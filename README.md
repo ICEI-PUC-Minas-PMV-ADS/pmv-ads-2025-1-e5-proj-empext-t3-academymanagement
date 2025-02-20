@@ -15,7 +15,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Bianca Nicoly Dias Matos
 * Caio César Santos Rezende
 * Roger Sato
-* Nome completo do aluno 6
+* Izabela Apolinário do Nascimento
 
 ## Orientador
 
