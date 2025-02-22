@@ -1,12 +1,12 @@
 # TÍTULO DO PROJETO
 
-`CURSO`
+`Análise e Desenvolvimento de Sistemas`
 
-`DISCIPLINA`
+` Projeto: Desenvolvimento de um Sistema Sociotécnico Inovador`
 
-`SEMESTRE`
+`Eixo 5 - Turma 03 - 2025/1`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto Academy Management tem como objetivo auxiliar no controle financeiro e automatizar todas as funções manuais da academia.
 
 ## Integrantes
 
