@@ -23,7 +23,7 @@ Descreva brevemente a arquitetura definida para o projeto e as tecnologias a ser
 
 ## Project Model Canvas
 
-![ProjectModelCanvas](https://github.com/user-attachments/assets/e7faaafd-9e08-4507-b3df-7c8846b8da4f)
+![Grey Minimalist Business Model Canvas Brainstorm](https://github.com/user-attachments/assets/ca95b358-eaf5-45cf-869e-3dffdce2aeaf)
 
 
 ## Requisitos
