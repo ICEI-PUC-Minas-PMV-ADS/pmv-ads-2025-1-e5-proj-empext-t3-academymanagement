@@ -98,3 +98,4 @@ O projeto da base de dados corresponde à representação das entidades e relaci
  
 Para mais informações, consulte o microfundamento "Modelagem de Dados".
 
+ <img src="img/ModeloER.png" alt="Modelo Entidade Relacionamento">
