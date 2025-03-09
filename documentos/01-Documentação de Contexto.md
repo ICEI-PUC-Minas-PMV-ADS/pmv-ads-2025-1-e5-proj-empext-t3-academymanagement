@@ -26,4 +26,4 @@ Do ponto de vista social, essa mudança beneficia tanto a administração da aca
 
 ## Descrição do Parceiro
 
-Apresente uma descrição resumida sobre a organização onde o projeto será desenvolvido para que possa ser compreendido o cenário do sistema sociotécnico.
+A academia de artes marciais CT Ninja Team onde o Academy Management será aplicado oferece modalidades como Muay Thai, Jiu-Jítsu, Thai Fit e MMA. Mais do que um espaço de treinamento, a academia tem como missão promover a saúde e o bem-estar de seus alunos, ensinando defesa pessoal para mulheres e preparando atletas para competições. Com uma estrutura voltada tanto para iniciantes quanto para competidores, a organização busca incentivar a disciplina, o desenvolvimento físico e a superação pessoal por meio das artes marciais.
