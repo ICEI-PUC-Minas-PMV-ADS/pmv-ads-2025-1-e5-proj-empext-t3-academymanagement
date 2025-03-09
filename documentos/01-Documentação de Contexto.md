@@ -1,6 +1,6 @@
 # Introdução
 
-Texto descritivo apresentando a compreensão sobre extensão universitária discutido no microfundamento de nivelamento, relacionando a situação-problema da organização e ao sistema sociotécnico que será desenvolvido e implantado.
+A extensão universitária busca aplicar o conhecimento acadêmico para solucionar problemas reais da sociedade. No caso desta academia de artes marciais, a falta de um controle eficiente das finanças e da frequência dos alunos compromete tanto a gestão quanto os resultados dos praticantes. Para resolver essa situação, será desenvolvido o Academy Management, um sistema sociotécnico que automatiza esses processos. Com isso, a academia terá mais organização financeira e um acompanhamento preciso da assiduidade dos alunos, incentivando a regularidade nos treinos e promovendo um impacto positivo no desempenho esportivo e administrativo
 
 ## Problema
 
