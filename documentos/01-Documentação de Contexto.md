@@ -10,19 +10,19 @@ O segundo desafio é o controle de faltas, que afeta diretamente a evolução do
 
 ## Objetivos
 
-Aqui o grupo deve descrever os objetivos do trabalho indicando que o objetivo é aplicar os conceitos de extensão universitária no desenvolvimento de um sistema sociotécnico que impacte positivamente a comunidade.
+O Academy Management é um sistema desenvolvido para otimizar a gestão financeira e o controle de frequência em academias de artes marciais.
 
+A ferramenta busca proporcionar um controle eficiente das mensalidades, reduzindo a inadimplência e garantindo uma administração financeira mais organizada. Além disso, permite um acompanhamento preciso da frequência dos alunos, fator essencial para avaliar seu desempenho e garantir melhores resultados nos treinos. Com uma interface intuitiva, o sistema simplifica a gestão desses processos, tornando a administração da academia mais prática e eficaz.
 ## Justificativa
+O Academy Management é essencial para academias de artes marciais que buscam otimizar a gestão financeira e o controle de frequência dos alunos. A falta de um sistema eficiente pode gerar dificuldades administrativas, como o aumento da inadimplência e a falta de um acompanhamento preciso da evolução dos praticantes.
 
-Descreva as dores/dificuldades do parceiro que motivam trabalhar na construção da solução.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Este sistema automatiza o acompanhamento de mensalidades, oferecendo mais controle sobre os pagamentos e reduzindo o risco de prejuízos. Além disso, permite monitorar a assiduidade dos alunos, fornecendo dados que auxiliam instrutores e gestores na análise do comprometimento e desempenho de cada praticante.
 
 ## Relação com a Extensão Universitária
 
-Relacionar a situação-problema da organização com o impacto social esperado com a implantação do sistema sociotécnico.
-Apresentar aqui como este projeto extensionista transforma a realidade do parceiro e dos alunos.
+O Academy Management surge como uma solução sociotécnica para transformar essa realidade. Com a implantação do sistema, espera-se uma melhora significativa na organização financeira da academia, garantindo um fluxo de caixa mais estável e reduzindo perdas por falta de pagamento. O monitoramento automatizado da frequência dos alunos permitirá que instrutores acompanhem mais de perto a evolução dos praticantes, incentivando a regularidade nos treinos e aprimorando os resultados.
+
+Do ponto de vista social, essa mudança beneficia tanto a administração da academia quanto os próprios alunos. Um ambiente mais estruturado e organizado possibilita um ensino mais eficiente, onde cada praticante recebe a atenção necessária para evoluir. Além disso, a tecnologia aplicada à gestão fortalece a relação entre alunos e academia, criando um espaço mais profissional e motivador. Dessa forma, o projeto não apenas soluciona problemas administrativos, mas também contribui para o desenvolvimento esportivo e disciplinar dos alunos, promovendo um impacto positivo na comunidade.
 
 ## Descrição do Parceiro
 
