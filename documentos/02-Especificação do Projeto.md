@@ -29,53 +29,50 @@ Descreva brevemente a arquitetura definida para o projeto e as tecnologias a ser
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, foi aplicada a técnica **MoSCoW** (Must Have, Should Have, Could Have, Won't Have). Essa técnica classifica os requisitos em níveis de importância para o sistema.
 
-Para mais informações, consulte os microfundamentos Fundamentos de Engenharia de Software e Engenharia de Requisitos de Software. 
+O sistema será dividido em duas partes:
+- **Sistema Administrativo Web**: responsável pelo gerenciamento completo do sistema.
+- **Aplicativo Mobile para Alunos**: permitirá aos alunos acompanharem seus treinos e progresso.
+
+Para mais informações, consulte os microfundamentos **Fundamentos de Engenharia de Software** e **Engenharia de Requisitos de Software**.
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID      | Descrição do Requisito                                         | Prioridade |
+|---------|-----------------------------------------------------------------|------------|
+| RF-001  | Permitir o cadastro e gerenciamento de turmas                   | ALTA       |
+| RF-002  | Permitir o cadastro e gerenciamento de alunos                   | ALTA       |
+| RF-003  | Implementar controle de presença diário                         | ALTA       |
+| RF-004  | Registrar e acompanhar a evolução física dos alunos             | MÉDIA      |
+| RF-005  | Disponibilizar dashboards de progresso individual               | MÉDIA      |
+| RF-006  | Gerenciar pagamentos e inadimplências dos alunos                | ALTA       |
+| RF-007  | Exibir alertas sobre pagamentos em atraso                       | ALTA       |
+| RF-008  | Automatizar o envio de mensagens motivacionais                  | MÉDIA      |
+| RF-009  | Gerenciar o controle de caixa                                   | MÉDIA      |
+| RF-010  | Permitir que os alunos consultem seus treinos pelo aplicativo   | ALTA       |
 
-### Requisitos não Funcionais
+### Requisitos Não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+| ID      | Descrição do Requisito                                          | Prioridade |
+|---------|-----------------------------------------------------------------|------------|
+| RNF-001 | O sistema deve ser responsivo para dispositivos móveis          | ALTA       |
+| RNF-002 | O tempo de resposta das requisições deve ser inferior a 3 segundos | MÉDIA      |
+| RNF-003 | O armazenamento dos dados deve garantir segurança e integridade | ALTA       |
+| RNF-004 | A interface deve ser intuitiva e de fácil navegação             | MÉDIA      |
+| RNF-005 | O sistema deve permitir exportação de relatórios em PDF         | BAIXA      |
 
 ## Restrições
 
-O projeto está restrito pelos itens apresentados na tabela a seguir.
+O projeto está restrito pelos seguintes itens:
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+| ID  | Restrição                                              |
+|-----|--------------------------------------------------------|
+| 01  | O projeto deverá ser entregue até o final do semestre |
+| 02  | O sistema deve ter um backend monolítico para mitigar custos de hospedagem |
+| 03  | O banco de dados deve ser PostgreSQL                 |
+| 04  | O sistema deve ser desenvolvido utilizando tecnologias web e mobile |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Diagrama de Caso de Uso
 
