@@ -3,12 +3,10 @@
 Texto descritivo apresentando a compreensão sobre extensão universitária discutido no microfundamento de nivelamento, relacionando a situação-problema da organização e ao sistema sociotécnico que será desenvolvido e implantado.
 
 ## Problema
-Nesse momento o grupo deve apresentar a situação-problema (dor/oportunidade) do parceiro onde será desenvolvido sistema sociotécnico.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+A academia enfrenta desafios significativos em duas áreas que impactam diretamente seu funcionamento e a experiência dos alunos. O primeiro problema diz respeito à gestão financeira, que necessita de um controle mais eficiente. A falta de um sistema robusto de monitoramento financeiro tem gerado inadimplência, prejudicando o fluxo de caixa e comprometendo a continuidade das operações e a qualidade dos serviços oferecidos.
+
+O segundo desafio é o controle de faltas, que afeta diretamente a evolução dos alunos nos treinos e nos resultados relacionados ao condicionamento físico e desenvolvimento nas artes marciais. A gestão inadequada das ausências dificulta o acompanhamento do progresso dos alunos, o que impacta seu desempenho e, consequentemente, os resultados que a academia busca alcançar.
 
 ## Objetivos
 
