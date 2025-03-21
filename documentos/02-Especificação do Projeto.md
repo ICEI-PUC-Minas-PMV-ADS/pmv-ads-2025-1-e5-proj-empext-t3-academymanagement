@@ -23,7 +23,8 @@ Descreva brevemente a arquitetura definida para o projeto e as tecnologias a ser
 
 ## Project Model Canvas
 
-![pmc](https://github.com/user-attachments/assets/bde84b94-0227-4523-b73f-0c13f0ae5278)
+![PMC](https://github.com/user-attachments/assets/4b6c9acb-f2cb-4905-a036-bc6e44476b5f)
+
 
 
 
