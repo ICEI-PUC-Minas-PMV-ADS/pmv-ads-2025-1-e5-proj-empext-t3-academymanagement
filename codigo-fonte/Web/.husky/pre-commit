@@ -1,0 +1,42 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+print_message() {
+  echo ""
+  echo "$1"
+  echo "$2"
+  echo ""
+}
+
+print_message "🔍 Checking everything before commit..." "Let's make sure everything is in order!"
+
+# Run Prettier
+print_message "🎨 Formatting code with Prettier..." "This will make your code look consistent and beautiful."
+
+if yarn prettier --write 'src/**/*.{js,ts,jsx,tsx}'; then
+  print_message "✨ Code formatted successfully!" "Your project is now looking great."
+else
+  print_message "🚨 Formatting failed!" "Please fix the formatting issues before committing. 🐞"
+  exit 1
+fi
+
+# Run linting
+print_message "⚙️ Running lint checks..." "This will ensure your code meets the style and quality standards."
+
+if yarn eslint .; then
+  print_message "✅ Linting successful!" "Your code passed the linting checks."
+else
+  print_message "🚨 Linting failed!" "Please address the linting issues before committing. 🐞"
+  exit 2
+fi
+
+print_message "🔍 Checking TypeScript types..." "This will ensure that your code is type-checked correctly."
+
+if yarn tsc --noEmit --skipLibCheck; then
+  print_message "✅ TypeScript types checked successfully!" "Your types are in good shape."
+else
+  print_message "🚨 TypeScript type checking failed!" "Please fix the type issues before committing. 🐞"
+  exit 3
+fi
+
+print_message "✅ All checks passed!" "You can now proceed with your commit. Great job!"

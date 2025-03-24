@@ -1,0 +1,25 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+set -e
+
+# Helper function to print messages in a consistent format
+print_message() {
+  echo ""
+  echo "$1"
+  echo "$2"
+  echo ""
+}
+
+print_message "🚀 Preparing for push..." "Let's ensure everything is in top shape before pushing your changes!"
+
+# Run build
+print_message "🔧 Building the project..." "We need to verify that the project builds successfully."
+
+if yarn build; then
+  print_message "🚀 Build successful!" "The build completed successfully. Your project is ready for the next steps."
+else
+  print_message "🚨 Build failed!" "The build process encountered errors. Please resolve these issues before pushing. 🐞"
+  exit 1
+fi
+
+print_message "✅ All done! Your changes are now ready for push." "Everything is set for a successful deployment!"

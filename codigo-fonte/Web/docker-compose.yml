@@ -1,0 +1,23 @@
+version: '1.0.0'
+
+services:
+    api:
+        container_name: lotus-app
+        image: lotus-app
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        working_dir: /app
+        command: >
+            /bin/sh -c "
+              npm run dev
+            "
+        env_file: .env
+        init: true
+        volumes:
+            - .:/app
+            - /app/node_modules
+            - /app/.next
+        ports:
+            - '${PORT}:${PORT}'

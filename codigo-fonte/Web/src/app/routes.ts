@@ -1,0 +1,16 @@
+export const Routes = {
+	home: '/',
+	auth: '/auth',
+	establishment: '/dashboard/establishment/',
+	establishmentEdit: (id: string) => `/dashboard/establishment/${id}`,
+	establishmentCreate: `/dashboard/establishment/form`,
+	user: '/dashboard/user',
+	client: '/dashboard/client',
+	point: '/dashboard/point',
+	consentNotGranted: '/error/401',
+	notFound: '/error/404',
+	forbidden: '/error/403',
+	unauthorized: '/error/401',
+	internalServerError: '/error/500',
+	patientNotFound: '/error/patient/404',
+};

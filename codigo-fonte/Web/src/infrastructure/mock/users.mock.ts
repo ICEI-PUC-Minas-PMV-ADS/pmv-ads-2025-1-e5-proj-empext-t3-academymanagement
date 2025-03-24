@@ -1,0 +1,58 @@
+import { IUserEntity } from '../../domain/entities/IUserEntity';
+
+export const mockUsers: IUserEntity[] = [
+	{
+		id: '67d97e039047a622b6e6ee00',
+		name: 'Admin Lotus Hotel',
+		email: 'admin@gmail.com',
+		password: 'admin123',
+		company_id: '101',
+		created_at: '2023-06-10T14:00:00Z',
+		updated_at: '2024-03-08T12:55:00Z',
+	},
+	{
+		id: '401',
+		name: 'Lucas Almeida',
+		email: 'lucas.almeida@techsolutions.com',
+		password: 'hashed_password_1',
+		company_id: '101',
+		created_at: '2023-06-10T14:00:00Z',
+		updated_at: '2024-03-08T12:55:00Z',
+	},
+	{
+		id: '402',
+		name: 'Mariana Costa',
+		email: 'mariana.costa@greenenergy.com',
+		password: 'hashed_password_2',
+		company_id: '102',
+		created_at: '2023-07-15T10:30:00Z',
+		updated_at: '2024-02-20T15:20:00Z',
+	},
+	{
+		id: '403',
+		name: 'Ricardo Mendes',
+		email: 'ricardo.mendes@xpto.com.br',
+		password: 'hashed_password_3',
+		company_id: '103',
+		created_at: '2023-08-05T09:45:00Z',
+		updated_at: '2024-03-10T17:00:00Z',
+	},
+	{
+		id: '404',
+		name: 'Fernanda Oliveira',
+		email: 'fernanda.oliveira@blueocean.com',
+		password: 'hashed_password_4',
+		company_id: '104',
+		created_at: '2023-09-12T11:15:00Z',
+		updated_at: '2024-01-25T14:35:00Z',
+	},
+	{
+		id: '405',
+		name: 'Gustavo Santos',
+		email: 'gustavo.santos@futuretech.com',
+		password: 'hashed_password_5',
+		company_id: '105',
+		created_at: '2023-10-20T08:00:00Z',
+		updated_at: '2024-02-18T10:50:00Z',
+	},
+];
