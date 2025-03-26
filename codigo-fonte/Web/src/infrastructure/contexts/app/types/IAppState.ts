@@ -1,6 +1,6 @@
 import { ICompanyEntitye } from '../../../../domain/entities/ICompanyEntitye';
 import { IEstablishmentEntitye } from '../../../../domain/entities/IEstablishmentEntitye';
-import { IUserEntity } from '../../../../domain/entities/IUserEntity';
+import { IUserEntity } from '../../../../domain/entities/ISubscriptionEntity';
 
 export type IAccessTypes = 'USER_CREDENTIALS' | 'API_KEY';
 
