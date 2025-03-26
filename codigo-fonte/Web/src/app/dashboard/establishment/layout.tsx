@@ -8,5 +8,5 @@ export default function EstablishmentLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return <>{chsan}</>;
+	return <>{children}</>;
 }
