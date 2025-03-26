@@ -1,5 +1,5 @@
-import { IUserEntity } from '../../../domain/entities/IUserEntity';
-import { IUserRepository } from '../../../domain/repositories/IUser.repo';
+import { IUserEntity } from '../../../domain/entities/ISubscriptionEntity';
+import { IUserRepository } from '../../../domain/repositories/IAttendance.repo';
 import { mockUsers } from '../../mock/users.mock';
 import { simulateDelay } from '../../utils/simulateDelay';
 
