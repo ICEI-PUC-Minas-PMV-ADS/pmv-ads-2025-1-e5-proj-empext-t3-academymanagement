@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
 import { useEffect } from 'react';
 import { Routes } from '../../../app/routes';
-import { IUserEntity } from '../../../domain/entities/ISubscriptionEntity';
+import { IUserEntity } from '../../../domain/entities/IUserEntity';
 import {
 	useAppDispatch,
 	useAppSelector,

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { IUserRepository } from '../../../domain/repositories/IAttendance.repo';
+import { IUserRepository } from '../../../domain/repositories/IUser.repo';
 import { IRepositorysType } from '../../../types/IRepositorys';
 import { mockUserRepository } from './mockUserRepository';
 

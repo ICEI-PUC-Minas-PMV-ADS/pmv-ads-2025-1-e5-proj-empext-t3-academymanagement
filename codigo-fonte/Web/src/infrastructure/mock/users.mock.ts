@@ -1,4 +1,4 @@
-import { IUserEntity } from '../../domain/entities/ISubscriptionEntity';
+import { IUserEntity } from '../../domain/entities/IUserEntity';
 
 export const mockUsers: IUserEntity[] = [
 	{
