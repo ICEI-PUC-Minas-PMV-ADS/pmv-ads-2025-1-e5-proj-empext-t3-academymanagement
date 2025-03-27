@@ -77,7 +77,7 @@ O projeto está restrito pelos seguintes itens:
 
 ## Diagrama de Caso de Uso
 
-![diagrama caso de uso](https://github.com/user-attachments/assets/d3f27f6c-84b3-4392-b194-7e8695af4309)
+![Diagrama caso de uso](https://github.com/user-attachments/assets/892bb65f-bd2f-41db-94e5-0ca8193af176)
 
 
 ## Projeto da Base de Dados
