@@ -25,18 +25,15 @@ export const mockUserRepository: IUserRepository = {
 		};
 	},
 
-	getAll: async ({ company_id, name }) => {
+	getAll: async (search?: string) => {
 		await simulateDelay(500);
 
 		return mockUsers
 			.filter(
 				(user) =>
-					(!company_id || user.company_id === company_id) &&
-					(!name ||
-						(user.name &&
-							user.name
-								.toLowerCase()
-								.includes(name.toLowerCase()))),
+					!search ||
+					(user.name &&
+						user.name.toLowerCase().includes(search.toLowerCase())),
 			)
 			.map(({ id, name, email, created_at, updated_at }) => ({
 				id,

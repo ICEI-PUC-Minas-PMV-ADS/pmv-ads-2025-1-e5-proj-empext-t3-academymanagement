@@ -57,7 +57,7 @@ export const useAuthentication = () => {
 
 			const current_path = getStorage<string>('@current_path:');
 
-			router.push(current_path || Routes.establishment);
+			router.push(current_path || Routes.user);
 		},
 		closeSession: async () => {
 			router.push(Routes.home);

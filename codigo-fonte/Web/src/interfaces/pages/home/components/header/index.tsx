@@ -25,7 +25,7 @@ export const HeaderHomeLayout = () => {
 					variant='body1'
 					sx={{ fontSize: '1.4rem', fontWeight: 600 }}
 				>
-					Gerenciador de Hospedagens
+					Gerenciador de Academia
 				</Typography>
 				<Typography
 					variant='body2'
@@ -37,8 +37,8 @@ export const HeaderHomeLayout = () => {
 						top: 0,
 					}}
 				>
-					Solução inteligente para gestão de hospedagens, reservas e
-					programas de fidelidade.
+					Solução inteligente para gestão de matrículas, controle de
+					frequência e muito mais!
 				</Typography>
 			</Stack>
 		</Box>

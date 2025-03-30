@@ -6,12 +6,14 @@ import { useBoolean } from '../../../../hooks/useBoolean';
 import { CompanyInfoHeader } from '../../../companyInfo/header';
 import { SkeletonCompanyInfoHeader } from '../../../companyInfo/header/loading';
 import { Icon } from '../../../icon';
+import { PopupBodyChildren, PopupContainer, PopupHeader } from '../../../popup';
 import { IHeaderNavBarProps } from './types';
 
 export const HeaderNavbar = ({ onCloseNavBar }: IHeaderNavBarProps) => {
 	const theme = useTheme();
 	const isOpenPopup = useBoolean(false);
-	const { company, loading } = useAppSelector((state) => state.app);
+
+	const { loading } = useAppSelector((state) => state.app);
 
 	return (
 		<Box
@@ -34,6 +36,29 @@ export const HeaderNavbar = ({ onCloseNavBar }: IHeaderNavBarProps) => {
 					aria-label='Fechar Menu de Navegação'
 				/>
 			)}
+			<PopupContainer
+				isOpen={isOpenPopup.value}
+				onClose={isOpenPopup.onFalse}
+			>
+				<PopupHeader
+					icon='building'
+					onClose={isOpenPopup.onFalse}
+					title={'Dados da Ninja Team'}
+				/>
+				<PopupBodyChildren>
+					<div
+						style={{
+							width: '100%',
+							minHeight: '100%',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
+						<p>NÃO POSSUI MAIS INFORMAÇÕES!</p>
+					</div>
+				</PopupBodyChildren>
+			</PopupContainer>
 			<ButtonBase
 				sx={{
 					'width': '100%',
@@ -71,7 +96,7 @@ export const HeaderNavbar = ({ onCloseNavBar }: IHeaderNavBarProps) => {
 					{loading ? (
 						<SkeletonCompanyInfoHeader />
 					) : (
-						<CompanyInfoHeader company_name={company?.name} />
+						<CompanyInfoHeader company_name='Ninja Team' />
 					)}
 				</Box>
 				<Box

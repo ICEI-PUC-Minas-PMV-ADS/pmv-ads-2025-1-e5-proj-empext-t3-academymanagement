@@ -5,27 +5,27 @@ import slid_04 from '../../../../../../public/images/slides/slid_04.png';
 
 export const DataAuthCarousel = [
 	{
-		title: 'Ilustração 1',
+		title: 'Organize sua Academia',
 		svg: slid_01,
 		description:
-			'"Gerencie Hotéis com Eficiência. Controle reservas, disponibilidade e operações diárias em um só lugar, garantindo a melhor experiência para seus clientes."',
+			'"Gerencie turmas, instrutores e alunos com facilidade. Tenha controle total sobre horários, modalidades e níveis de graduação em um só lugar."',
 	},
 	{
-		title: 'Ilustração 2',
+		title: 'Controle de Presenças',
 		svg: slid_02,
 		description:
-			'"Administre Programas de Pontos com Facilidade. Monitore saldos, transações e resgates, oferecendo benefícios exclusivos para clientes fidelizados."',
+			'"Registre e acompanhe a frequência dos alunos com praticidade. Identifique rapidamente faltas recorrentes e mantenha o engajamento da sua equipe."',
 	},
 	{
-		title: 'Ilustração 3',
+		title: 'Gestão Financeira Simplificada',
 		svg: slid_03,
 		description:
-			'"Relatórios e Análises em Tempo Real. Acompanhe o desempenho do hotel, a taxa de ocupação e o engajamento do programa de fidelidade com dashboards intuitivos."',
+			'"Automatize cobranças, controle pagamentos e gere relatórios financeiros detalhados. Reduza a inadimplência e mantenha sua academia saudável financeiramente."',
 	},
 	{
-		title: 'Ilustração 4',
+		title: 'Relatórios e Indicadores',
 		svg: slid_04,
 		description:
-			'"Automatize Processos e Aumente a Eficiência. Reduza o trabalho manual e otimize a gestão de reservas, pagamentos e recompensas com tecnologia de ponta."',
+			'"Acompanhe o crescimento da sua academia com dashboards intuitivos. Visualize matrículas ativas, desempenho por turma e evolução dos alunos em tempo real."',
 	},
 ];

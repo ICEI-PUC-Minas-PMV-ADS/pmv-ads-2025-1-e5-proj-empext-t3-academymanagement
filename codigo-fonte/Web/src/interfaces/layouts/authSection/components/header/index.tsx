@@ -28,7 +28,7 @@ export const HeaderAuthLayout = () => {
 						color: theme.palette.text.primary,
 					}}
 				>
-					Gerenciador de Hospedagens
+					Gerenciador de Academia
 				</Typography>
 				<Typography
 					variant='body2'
@@ -39,8 +39,8 @@ export const HeaderAuthLayout = () => {
 						color: theme.palette.text.secondary,
 					}}
 				>
-					Solução inteligente para gestão de hospedagens, reservas e
-					programas de fidelidade.
+					Solução inteligente para gestão de matrículas, controle de
+					frequência e muito mais!
 				</Typography>
 			</Stack>
 		</Box>

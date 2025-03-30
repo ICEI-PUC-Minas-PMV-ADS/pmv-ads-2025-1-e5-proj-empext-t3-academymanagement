@@ -11,7 +11,6 @@ import {
 	useAppSelector,
 } from '../../../infrastructure/contexts';
 import { setAppContext } from '../../../infrastructure/contexts/app';
-import { useCompanyRepository } from '../../../infrastructure/repositories/companie';
 import { useUserRepository } from '../../../infrastructure/repositories/user';
 import { storages } from '../../../infrastructure/utils/localStorage';
 import Footer from '../../components/footer';
@@ -32,7 +31,6 @@ export const Dashboard = ({
 	const isActiveNavBar = useBoolean(false);
 
 	const { getById } = useUserRepository();
-	const { getAll } = useCompanyRepository();
 
 	const { user } = useAppSelector((state) => state.app);
 	const dispatch = useAppDispatch();
@@ -63,36 +61,9 @@ export const Dashboard = ({
 		}
 	};
 
-	const getDataCompany = async () => {
-		try {
-			const companyData = await getAll();
-
-			if (companyData) {
-				dispatch(
-					setAppContext({
-						company: companyData[0],
-					}),
-				);
-			} else
-				console.error('[GET_USER_ERROR]: ', {
-					message: 'Company Not Found',
-					data: companyData,
-				});
-		} catch (error) {
-			enqueueSnackbar('Erro Interno do Servidor', {
-				variant: 'error',
-			});
-			console.error('error', error);
-			router.push(Routes.internalServerError);
-		}
-	};
-
 	useEffect(() => {
 		const cacheUserId = getStorage<string>('@user_id:');
-
 		if (cacheUserId || user?.id) getDataUser(cacheUserId || user?.id);
-
-		getDataCompany();
 	}, []);
 
 	const renderNavBar = () => {
