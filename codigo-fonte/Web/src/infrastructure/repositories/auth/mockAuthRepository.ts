@@ -15,9 +15,12 @@ export const mockAuthRepository: IAuthRepository = {
 		}
 
 		return {
-			name: user.name,
-			email: user.email,
-			accessToken: process.env.NEXT_PUBLIC_FIXED_TOKEN || '',
+			success: true,
+			message: 'Autenticação realizada com sucesso.',
+			data: {
+				user: mockUsers[0],
+				token: process.env.NEXT_PUBLIC_FIXED_TOKEN || '',
+			},
 		};
 	},
 };

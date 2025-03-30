@@ -16,9 +16,9 @@ export default function UserEditPage({ params }: IFormPageProps) {
 	);
 
 	const getDataPage = async () => {
-		const responseData = await userRepository.getById(userId!);
+		const response = await userRepository.getById(userId!);
 
-		if (responseData) setEditUser(responseData);
+		if (response.success) setEditUser(response.data);
 		else setEditUser(undefined);
 	};
 

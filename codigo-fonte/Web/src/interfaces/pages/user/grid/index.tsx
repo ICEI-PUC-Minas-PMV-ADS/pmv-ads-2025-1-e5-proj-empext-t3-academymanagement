@@ -9,11 +9,7 @@ import { Routes } from '../../../../app/routes';
 import { IUserEntity } from '../../../../domain/entities/IUserEntity';
 import { useUserRepository } from '../../../../infrastructure/repositories/user';
 import { GridLoading } from '../../../components/gridLoading';
-import {
-	TableHead,
-	TablePaginationCustom,
-	useTable,
-} from '../../../components/table';
+import { TableHead, useTable } from '../../../components/table';
 import { useBoolean } from '../../../hooks/useBoolean';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { useFilters } from '../../../hooks/useFilters';
@@ -56,7 +52,7 @@ export const UserGrid = () => {
 		try {
 			const dataUser = await userRepository.getAll(debouncedSearch);
 
-			if (dataUser) setTableData(dataUser || []);
+			if (dataUser.success) setTableData(dataUser.data || []);
 			else
 				enqueueSnackbar('Estabelecimento Não Encontrado', {
 					variant: 'error',
@@ -164,14 +160,14 @@ export const UserGrid = () => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<TablePaginationCustom
+			{/* <TablePaginationCustom
 				count={dataInPage.length}
 				page={table.page}
 				rowsPerPage={table.rowsPerPage}
 				onPageChange={table.onChangePage}
 				onRowsPerPageChange={table.onChangeRowsPerPage}
 				dense
-			/>
+			/> */}
 		</Card>
 	);
 };

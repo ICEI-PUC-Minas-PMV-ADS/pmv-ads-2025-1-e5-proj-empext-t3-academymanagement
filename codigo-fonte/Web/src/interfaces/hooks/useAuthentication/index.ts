@@ -1,5 +1,7 @@
+import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 import { Routes } from '../../../app/routes';
+import { IAuthPayload } from '../../../domain/dtos/IAuth.dto';
 import { apiInstance } from '../../../infrastructure/config/apiInstance';
 import { useAppDispatch } from '../../../infrastructure/contexts';
 import {
@@ -24,14 +26,9 @@ export const useAuthentication = () => {
 				return;
 			}
 
-			const jwtDecode = {
-				user_id: '67d97e039047a622b6e6ee00',
-				user_name: 'Admin Lotus Hotel',
-				iat: 1742352535,
-				exp: 1742957335,
-			};
+			const decodedToken = jwtDecode<IAuthPayload>(token);
 
-			if (!jwtDecode || !jwtDecode.user_id) {
+			if (!decodedToken || !decodedToken.user) {
 				console.error(`Error: JWT Decode Not Found`);
 				router.push(Routes.unauthorized);
 				return;
@@ -42,16 +39,13 @@ export const useAuthentication = () => {
 			});
 
 			setStorage('@token:', token);
-			setStorage('@user_id:', jwtDecode.user_id);
+			setStorage('@user_id:', decodedToken.user.id);
 
 			dispatch(
 				setAppContext({
 					token: token,
 					authenticated: true,
-					user: {
-						id: jwtDecode.user_id,
-						name: jwtDecode.user_name,
-					},
+					user: decodedToken.user,
 				}),
 			);
 

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { IUserRepository } from '../../../domain/repositories/IUser.repo';
 import { IRepositorysType } from '../../../types/IRepositorys';
+import { httpUserRepository } from './httpUserRepository';
 import { mockUserRepository } from './mockUserRepository';
 
 export const useUserRepository = (type?: IRepositorysType): IUserRepository => {
@@ -13,6 +14,8 @@ export const useUserRepository = (type?: IRepositorysType): IUserRepository => {
 		switch (repositoryType) {
 			case 'mock':
 				return mockUserRepository;
+			case 'http':
+				return httpUserRepository;
 			default:
 				throw new Error(`Unknown repository type: ${repositoryType}`);
 		}

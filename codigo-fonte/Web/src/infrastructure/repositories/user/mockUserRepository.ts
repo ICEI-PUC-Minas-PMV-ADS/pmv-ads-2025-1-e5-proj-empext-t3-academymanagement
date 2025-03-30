@@ -17,18 +17,22 @@ export const mockUserRepository: IUserRepository = {
 		mockUsers.push(newUser);
 
 		return {
-			id: newUser.id,
-			name: newUser.name,
-			email: newUser.email,
-			created_at: newUser.created_at,
-			updated_at: newUser.updated_at,
+			message: 'Usuário cadastrado com sucesso',
+			success: true,
+			data: {
+				id: newUser.id,
+				name: newUser.name,
+				email: newUser.email,
+				created_at: newUser.created_at,
+				updated_at: newUser.updated_at,
+			},
 		};
 	},
 
 	getAll: async (search?: string) => {
 		await simulateDelay(500);
 
-		return mockUsers
+		const users = mockUsers
 			.filter(
 				(user) =>
 					!search ||
@@ -42,20 +46,35 @@ export const mockUserRepository: IUserRepository = {
 				created_at,
 				updated_at,
 			}));
+
+		return {
+			message: 'Lista de usuários recuperada com sucesso',
+			success: true,
+			data: users,
+		};
 	},
 
 	getById: async (userId: string) => {
 		await simulateDelay(500);
 
 		const user = mockUsers.find((user) => user.id === userId);
-		if (!user) throw new Error('Usuário não encontrado');
+		if (!user) {
+			return {
+				message: 'Usuário não encontrado',
+				success: false,
+			};
+		}
 
 		return {
-			id: user.id,
-			name: user.name,
-			email: user.email,
-			created_at: user.created_at,
-			updated_at: user.updated_at,
+			message: 'Usuário encontrado com sucesso',
+			success: true,
+			data: {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				created_at: user.created_at,
+				updated_at: user.updated_at,
+			},
 		};
 	},
 
@@ -63,7 +82,12 @@ export const mockUserRepository: IUserRepository = {
 		await simulateDelay(500);
 
 		const index = mockUsers.findIndex((user) => user.id === data.id);
-		if (index === -1) throw new Error('Usuário não encontrado');
+		if (index === -1) {
+			return {
+				message: 'Usuário não encontrado',
+				success: false,
+			};
+		}
 
 		mockUsers[index] = {
 			...mockUsers[index],
@@ -71,12 +95,18 @@ export const mockUserRepository: IUserRepository = {
 			updated_at: new Date().toISOString(),
 		};
 
+		const updatedUser = mockUsers[index];
+
 		return {
-			id: mockUsers[index].id,
-			name: mockUsers[index].name,
-			email: mockUsers[index].email,
-			created_at: mockUsers[index].created_at,
-			updated_at: mockUsers[index].updated_at,
+			message: 'Usuário atualizado com sucesso',
+			success: true,
+			data: {
+				id: updatedUser.id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+				created_at: updatedUser.created_at,
+				updated_at: updatedUser.updated_at,
+			},
 		};
 	},
 
@@ -84,9 +114,19 @@ export const mockUserRepository: IUserRepository = {
 		await simulateDelay(500);
 
 		const index = mockUsers.findIndex((user) => user.id === userId);
-		if (index === -1) return false;
+		if (index === -1) {
+			return {
+				message: 'Usuário não encontrado',
+				success: false,
+			};
+		}
 
 		mockUsers.splice(index, 1);
-		return true;
+
+		return {
+			data: undefined,
+			message: 'Usuário removido com sucesso',
+			success: true,
+		};
 	},
 };

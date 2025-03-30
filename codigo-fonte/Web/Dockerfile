@@ -8,7 +8,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package.json, .env, and .npmrc files to the working directory
-COPY package.json .env .npmrc ./
+COPY package.json .env ./
 
 # Install dependencies using Yarn, with a frozen lockfile
 RUN yarn --frozen-lockfile
@@ -21,9 +21,6 @@ WORKDIR /app
 
 # Copy all files from the host to the container
 COPY . .
-
-# Remove .npmrc file (not needed in production)
-RUN rm .npmrc
 
 # Build the project
 RUN yarn build

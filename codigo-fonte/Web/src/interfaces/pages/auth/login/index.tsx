@@ -17,7 +17,7 @@ import { useForm } from 'react-hook-form';
 import { Routes } from '../../../../app/routes';
 import { useAppDispatch } from '../../../../infrastructure/contexts';
 import { setAppContext } from '../../../../infrastructure/contexts/app';
-import { mockAuthRepository } from '../../../../infrastructure/repositories/auth/mockAuthRepository';
+import { useAuthRepository } from '../../../../infrastructure/repositories/auth';
 import { FormProvider, RHFTextField } from '../../../components/hookForm';
 import { Icon } from '../../../components/icon';
 import { useBoolean } from '../../../hooks/useBoolean';
@@ -27,6 +27,7 @@ export const LoginPage = () => {
 	const dispatch = useAppDispatch();
 	const theme = useTheme();
 	const router = useRouter();
+	const authRepository = useAuthRepository();
 
 	const resetPasswordLoading = useBoolean(false);
 	const toogleViewPassword = useBoolean();
@@ -46,12 +47,12 @@ export const LoginPage = () => {
 
 	const onSubmit = handleSubmit(async ({ email, password }) => {
 		try {
-			const authData = await mockAuthRepository.login({
+			const authData = await authRepository.login({
 				email,
 				password,
 			});
 
-			if (!authData || !authData.accessToken)
+			if (!authData || !authData.success)
 				enqueueSnackbar(
 					'Verifique seu usuário e senha e tente novamente!',
 					{ variant: 'error' },
@@ -61,11 +62,8 @@ export const LoginPage = () => {
 
 				dispatch(
 					setAppContext({
-						token: authData.accessToken,
-						user: {
-							name: authData.name,
-							email: authData.email,
-						},
+						token: authData.data.token,
+						user: authData.data.user,
 					}),
 				);
 

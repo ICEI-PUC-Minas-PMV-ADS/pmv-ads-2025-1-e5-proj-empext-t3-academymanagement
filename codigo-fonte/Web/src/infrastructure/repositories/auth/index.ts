@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { IAuthRepository } from '../../../domain/repositories/IAuth.repo';
 import { IRepositorysType } from '../../../types/IRepositorys';
+import { httpAuthRepository } from './httpAuthRepository';
 import { mockAuthRepository } from './mockAuthRepository';
 
 export const useAuthRepository = (type?: IRepositorysType): IAuthRepository => {
@@ -13,6 +14,8 @@ export const useAuthRepository = (type?: IRepositorysType): IAuthRepository => {
 		switch (repositoryType) {
 			case 'mock':
 				return mockAuthRepository;
+			case 'http':
+				return httpAuthRepository;
 			default:
 				throw new Error(`Unknown repository type: ${repositoryType}`);
 		}
