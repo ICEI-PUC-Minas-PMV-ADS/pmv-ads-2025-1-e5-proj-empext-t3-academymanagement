@@ -4,8 +4,9 @@ import app from './app';
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-	methods: ['GET', 'POST', 'PUT', 'DELETE'],
-	credentials: true,
+	origin: '*',
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.listen(PORT, () => {
