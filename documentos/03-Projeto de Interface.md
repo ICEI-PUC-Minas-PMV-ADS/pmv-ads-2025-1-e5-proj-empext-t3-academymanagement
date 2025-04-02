@@ -23,12 +23,15 @@ Tela - Gestão financeira:
 Visão do usuário:
 
 Tela - Registrar Presença:
+
 ![image](https://github.com/user-attachments/assets/f451f4d2-e1b3-4057-8a45-5ed8ee67d3c1)
 
 Tela - Progresso:
+
 ![image](https://github.com/user-attachments/assets/430418d0-beb6-4f82-bdb9-684ed280c476)
 
 Tela - Mensalidade:
+
 ![image](https://github.com/user-attachments/assets/8fa7f89b-0c26-4cf0-8ce6-4b7f3491441e)
 
 
