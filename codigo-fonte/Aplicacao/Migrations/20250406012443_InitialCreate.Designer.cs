@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250318184845_InitialCreate")]
+    [Migration("20250406012443_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -28,11 +28,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Aluno", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdAluno")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAluno"));
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("timestamp with time zone");
@@ -52,7 +52,7 @@ namespace Gym.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdAluno");
 
                     b.HasIndex("IdUsuario");
 
@@ -61,13 +61,16 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.EnvioMensagem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdEnvioMensagem")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEnvioMensagem"));
 
-                    b.Property<DateTime>("DataEnvio")
+                    b.Property<bool>("Agendado")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("DataAgendamento")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("IdAluno")
@@ -76,7 +79,7 @@ namespace Gym.Migrations
                     b.Property<int>("IdMensagem")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdEnvioMensagem");
 
                     b.HasIndex("IdAluno");
 
@@ -85,13 +88,43 @@ namespace Gym.Migrations
                     b.ToTable("EnvioMensagens", "desenvolvimento");
                 });
 
-            modelBuilder.Entity("Gym.Models.Instrutor", b =>
+            modelBuilder.Entity("Gym.Models.Falta", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdFalta")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdFalta"));
+
+                    b.Property<DateTime>("DataFalta")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("IdAluno")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdTurma")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Motivo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("IdFalta");
+
+                    b.HasIndex("IdAluno");
+
+                    b.HasIndex("IdTurma");
+
+                    b.ToTable("Faltas", "desenvolvimento");
+                });
+
+            modelBuilder.Entity("Gym.Models.Instrutor", b =>
+                {
+                    b.Property<int>("IdInstrutor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdInstrutor"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -106,7 +139,7 @@ namespace Gym.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdInstrutor");
 
                     b.HasIndex("IdUsuario");
 
@@ -115,11 +148,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Matricula", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdMatricula")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdMatricula"));
 
                     b.Property<DateTime>("DataMatricula")
                         .HasColumnType("timestamp with time zone");
@@ -130,7 +163,7 @@ namespace Gym.Migrations
                     b.Property<int>("IdTurma")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdMatricula");
 
                     b.HasIndex("IdAluno");
 
@@ -141,11 +174,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.MensagemMotivacional", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdMensagemMotivacional")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdMensagemMotivacional"));
 
                     b.Property<TimeSpan>("HorarioEnvio")
                         .HasColumnType("interval");
@@ -160,36 +193,36 @@ namespace Gym.Migrations
                     b.Property<DateTime>("data_agendamento")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdMensagemMotivacional");
 
                     b.ToTable("MensagensMotivacionais", "desenvolvimento");
                 });
 
             modelBuilder.Entity("Gym.Models.Modalidade", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdModalidade")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdModalidade"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdModalidade");
 
                     b.ToTable("Modalidades", "desenvolvimento");
                 });
 
             modelBuilder.Entity("Gym.Models.Pagamento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdPagamento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPagamento"));
 
                     b.Property<DateTime?>("DataPagamento")
                         .HasColumnType("timestamp with time zone");
@@ -210,7 +243,7 @@ namespace Gym.Migrations
                     b.Property<decimal>("Valor")
                         .HasColumnType("numeric");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdPagamento");
 
                     b.HasIndex("IdAluno");
 
@@ -259,7 +292,7 @@ namespace Gym.Migrations
 
                     b.HasIndex("IdPermissao");
 
-                    b.ToTable("PerfilUsuarioPermissao", "desenvolvimento");
+                    b.ToTable("PerfilUsuarioPermissoes", "desenvolvimento");
                 });
 
             modelBuilder.Entity("Gym.Models.Permissao", b =>
@@ -286,11 +319,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Presenca", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdPresenca")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPresenca"));
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("timestamp with time zone");
@@ -301,7 +334,7 @@ namespace Gym.Migrations
                     b.Property<bool>("Presente")
                         .HasColumnType("boolean");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdPresenca");
 
                     b.HasIndex("IdMatricula");
 
@@ -310,11 +343,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Progresso", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdProgresso")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProgresso"));
 
                     b.Property<DateTime>("DataRegistro")
                         .HasColumnType("timestamp with time zone");
@@ -340,7 +373,7 @@ namespace Gym.Migrations
                     b.Property<decimal>("quadril")
                         .HasColumnType("numeric");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdProgresso");
 
                     b.HasIndex("IdAluno");
 
@@ -349,11 +382,11 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Turma", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdTurma")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTurma"));
 
                     b.Property<int>("Capacidade")
                         .HasColumnType("integer");
@@ -364,7 +397,7 @@ namespace Gym.Migrations
                     b.Property<int>("IdModalidade")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdTurma");
 
                     b.HasIndex("IdModalidade");
 
@@ -394,7 +427,7 @@ namespace Gym.Migrations
                     b.ToTable("TurmaInstrutor", "desenvolvimento");
                 });
 
-            modelBuilder.Entity("Usuario", b =>
+            modelBuilder.Entity("Gym.Models.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
@@ -446,7 +479,7 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.Aluno", b =>
                 {
-                    b.HasOne("Usuario", "Usuario")
+                    b.HasOne("Gym.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -474,9 +507,28 @@ namespace Gym.Migrations
                     b.Navigation("Mensagem");
                 });
 
+            modelBuilder.Entity("Gym.Models.Falta", b =>
+                {
+                    b.HasOne("Gym.Models.Aluno", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("IdAluno")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Gym.Models.Turma", "Turma")
+                        .WithMany()
+                        .HasForeignKey("IdTurma")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aluno");
+
+                    b.Navigation("Turma");
+                });
+
             modelBuilder.Entity("Gym.Models.Instrutor", b =>
                 {
-                    b.HasOne("Usuario", "Usuario")
+                    b.HasOne("Gym.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -586,7 +638,7 @@ namespace Gym.Migrations
                     b.Navigation("Turma");
                 });
 
-            modelBuilder.Entity("Usuario", b =>
+            modelBuilder.Entity("Gym.Models.Usuario", b =>
                 {
                     b.HasOne("Gym.Models.PerfilUsuario", "PerfilUsuario")
                         .WithMany()

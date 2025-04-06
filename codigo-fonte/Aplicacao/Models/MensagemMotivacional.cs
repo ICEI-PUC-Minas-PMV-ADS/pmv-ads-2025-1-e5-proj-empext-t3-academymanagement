@@ -5,9 +5,10 @@ namespace Gym.Models
     public class MensagemMotivacional
     {
         [Key]
-        public int Id { get; set; }
+        public int IdMensagemMotivacional { get; set; }
 
-        public string Texto { get; set; }
+        [Required]
+        public string Texto { get; set; } = string.Empty;
 
         public TimeSpan HorarioEnvio { get; set; }
         public bool agendado { get; set; }

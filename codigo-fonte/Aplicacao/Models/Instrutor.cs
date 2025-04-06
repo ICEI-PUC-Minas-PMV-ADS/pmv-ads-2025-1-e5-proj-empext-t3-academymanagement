@@ -6,7 +6,7 @@ namespace Gym.Models
     public class Instrutor
     {
         [Key]
-        public int Id { get; set; }
+        public int IdInstrutor { get; set; }
 
         public int IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]

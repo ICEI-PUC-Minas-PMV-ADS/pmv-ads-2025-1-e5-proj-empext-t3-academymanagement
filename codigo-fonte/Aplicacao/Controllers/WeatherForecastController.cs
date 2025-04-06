@@ -93,10 +93,10 @@ namespace Gym.Controllers
             return Ok(pagamento);
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> AtualizarPagamento(int id, StatusPagamento status)
+        [HttpPut("atualizar/{idPagamento}")]
+        public async Task<IActionResult> AtualizarPagamento(int idPagamento, StatusPagamento status)
         {
-            var pagamento = await _context.Pagamentos.FirstOrDefaultAsync(p => p.Id == id);
+            var pagamento = await _context.Pagamentos.FirstOrDefaultAsync(p => p.IdPagamento == idPagamento);
             if (pagamento == null)
                 return NotFound("Pagamento não encontrado.");
 
@@ -107,10 +107,10 @@ namespace Gym.Controllers
             return Ok(pagamento);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarPagamento(int id)
+        [HttpDelete("deletar/{idPagamento}")]
+        public async Task<IActionResult> DeletarPagamento(int idPagamento)
         {
-            var pagamentoExistente = await _context.Pagamentos.FirstOrDefaultAsync(p => p.Id == id);
+            var pagamentoExistente = await _context.Pagamentos.FirstOrDefaultAsync(p => p.IdPagamento == idPagamento);
             if (pagamentoExistente == null)
                 return NotFound("Pagamento não encontrado.");
 
@@ -139,30 +139,30 @@ namespace Gym.Controllers
         {
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterUsuario), new { id = usuario.IdUsuario }, usuario);
+            return CreatedAtAction(nameof(ObterUsuario), new { idUsuario = usuario.IdUsuario }, usuario);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterUsuario(int id)
+        [HttpGet("{idUsuario}")]
+        public async Task<IActionResult> ObterUsuario(int idUsuario)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios.FindAsync(idUsuario);
             if (usuario == null) return NotFound();
             return Ok(usuario);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarUsuario(int id, Usuario usuario)
+        [HttpPut("{idUsuario}")]
+        public async Task<IActionResult> AtualizarUsuario(int idUsuario, Usuario usuario)
         {
-            if (id != usuario.IdUsuario) return BadRequest();
+            if (idUsuario != usuario.IdUsuario) return BadRequest();
             _context.Entry(usuario).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletarUsuario(int id)
+        [HttpDelete("{idUsuario}")]
+        public async Task<IActionResult> DeletarUsuario(int idUsuario)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios.FindAsync(idUsuario);
             if (usuario == null) return NotFound();
             _context.Usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
@@ -191,27 +191,27 @@ namespace Gym.Controllers
             return Ok(perfilUsuario);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterPerfil(int id)
+        [HttpGet("{idPerfilUsuario}")]
+        public async Task<IActionResult> ObterPerfil(int idPerfilUsuario)
         {
-            var perfil = await _context.PerfisUsuarios.FindAsync(id);
+            var perfil = await _context.PerfisUsuarios.FindAsync(idPerfilUsuario);
             if (perfil == null) return NotFound();
             return Ok(perfil);
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> AtualizarPerfil(int id, PerfilUsuario perfilAtualizado)
+        [HttpPut("atualizar/{idPerfilUsuario}")]
+        public async Task<IActionResult> AtualizarPerfil(int idPerfilUsuario, PerfilUsuario perfilAtualizado)
         {
-            if (id != perfilAtualizado.IdPerfilUsuario) return BadRequest();
+            if (idPerfilUsuario != perfilAtualizado.IdPerfilUsuario) return BadRequest();
             _context.Entry(perfilAtualizado).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarPerfil(int id)
+        [HttpDelete("deletar/{idPerfilUsuario}")]
+        public async Task<IActionResult> DeletarPerfil(int idPerfilUsuario)
         {
-            var perfil = await _context.PerfisUsuarios.FindAsync(id);
+            var perfil = await _context.PerfisUsuarios.FindAsync(idPerfilUsuario);
             if (perfil == null) return NotFound();
             _context.PerfisUsuarios.Remove(perfil);
             await _context.SaveChangesAsync();
@@ -234,39 +234,78 @@ namespace Gym.Controllers
         }
 
         [HttpPost("inserir")]
-        public async Task<IActionResult> InserirPermissao(Permissao permissao)
+        public async Task<IActionResult> InserirPermissao([FromBody] List<Permissao> permissoes)
         {
-            _context.Permissoes.Add(permissao);
+            if (permissoes == null || !permissoes.Any())
+                return BadRequest("Nenhuma permissão enviada.");
+
+            _context.Permissoes.AddRange(permissoes);
             await _context.SaveChangesAsync();
-            return Ok(permissao);
+
+            return Ok(permissoes);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterPermissao(int id)
+        [HttpGet("{idPermissao}")]
+        public async Task<IActionResult> ObterPermissao(int idPermissao)
         {
-            var permissao = await _context.Permissoes.FindAsync(id);
+            var permissao = await _context.Permissoes.FindAsync(idPermissao);
             if (permissao == null) return NotFound();
             return Ok(permissao);
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> AtualizarPermissao(int id, Permissao permissaoAtualizada)
+        [HttpPut("atualizar")]
+        public async Task<IActionResult> AtualizarPermissoes([FromBody] List<Permissao> permissoes)
         {
-            if (id != permissaoAtualizada.IdPermissao) return BadRequest();
-            _context.Entry(permissaoAtualizada).State = EntityState.Modified;
+            if (permissoes == null || !permissoes.Any())
+                return BadRequest("Nenhuma permissão enviada para atualização.");
+
+            foreach (var permissao in permissoes)
+            {
+                var existente = await _context.Permissoes.FindAsync(permissao.IdPermissao);
+                if (existente != null)
+                {
+                    existente.Nome = permissao.Nome;
+                    existente.Descricao = permissao.Descricao;
+                    _context.Entry(existente).State = EntityState.Modified;
+                }
+            }
+
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarPermissao(int id)
+
+        [HttpDelete("deletar")]
+        public async Task<IActionResult> DeletarPermissoes([FromBody] List<int> ids)
         {
-            var permissao = await _context.Permissoes.FindAsync(id);
-            if (permissao == null) return NotFound();
-            _context.Permissoes.Remove(permissao);
+            if (ids == null || !ids.Any())
+                return BadRequest("Nenhum ID enviado.");
+
+            var permissoes = _context.Permissoes.Where(p => ids.Contains(p.IdPermissao)).ToList();
+
+            if (!permissoes.Any())
+                return NotFound("Nenhuma permissão encontrada.");
+
+            _context.Permissoes.RemoveRange(permissoes);
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
+        [HttpPost("vincularPerfil")]
+        public async Task<IActionResult> VincularPermissaoAoPerfil([FromBody] PerfilUsuarioPermissao vinculo)
+        {
+            var permissao = await _context.Permissoes.FindAsync(vinculo.IdPermissao);
+            var perfil = await _context.PerfisUsuarios.FindAsync(vinculo.IdPerfilUsuario);
+
+            if (permissao == null || perfil == null)
+                return BadRequest("Permissão ou perfil inválido");
+
+            _context.PerfilUsuarioPermissoes.Add(vinculo);
+            await _context.SaveChangesAsync();
+
+            return Ok(vinculo);
+        }
+
     }
     #endregion
 
@@ -290,27 +329,27 @@ namespace Gym.Controllers
             return Ok(modalidade);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterModalidade(int id)
+        [HttpGet("{idModalidade}")]
+        public async Task<IActionResult> ObterModalidade(int idModalidade)
         {
-            var modalidade = await _context.Modalidades.FindAsync(id);
+            var modalidade = await _context.Modalidades.FindAsync(idModalidade);
             if (modalidade == null) return NotFound();
             return Ok(modalidade);
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> AtualizarModalidade(int id, Modalidade modalidadeAtualizada)
+        [HttpPut("atualizar/{idModalidade}")]
+        public async Task<IActionResult> AtualizarModalidade(int idModalidade, Modalidade modalidadeAtualizada)
         {
-            if (id != modalidadeAtualizada.Id) return BadRequest();
+            if (idModalidade != modalidadeAtualizada.IdModalidade) return BadRequest();
             _context.Entry(modalidadeAtualizada).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarModalidade(int id)
+        [HttpDelete("deletar/{idModalidade}")]
+        public async Task<IActionResult> DeletarModalidade(int idModalidade)
         {
-            var modalidade = await _context.Modalidades.FindAsync(id);
+            var modalidade = await _context.Modalidades.FindAsync(idModalidade);
             if (modalidade == null) return NotFound();
             _context.Modalidades.Remove(modalidade);
             await _context.SaveChangesAsync();
@@ -340,27 +379,27 @@ namespace Gym.Controllers
             return Ok(instrutor);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterInstrutor(int id)
+        [HttpGet("{idInstrutor}")]
+        public async Task<IActionResult> ObterInstrutor(int idInstrutor)
         {
-            var instrutor = await _context.Instrutores.FindAsync(id);
+            var instrutor = await _context.Instrutores.FindAsync(idInstrutor);
             if (instrutor == null) return NotFound();
             return Ok(instrutor);
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> AtualizarInstrutor(int id, Instrutor instrutorAtualizado)
+        [HttpPut("atualizar/{idInstrutor}")]
+        public async Task<IActionResult> AtualizarInstrutor(int idInstrutor, Instrutor instrutorAtualizado)
         {
-            if (id != instrutorAtualizado.Id) return BadRequest();
+            if (idInstrutor != instrutorAtualizado.IdInstrutor) return BadRequest();
             _context.Entry(instrutorAtualizado).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarInstrutor(int id)
+        [HttpDelete("deletar/{idInstrutor}")]
+        public async Task<IActionResult> DeletarInstrutor(int idInstrutor)
         {
-            var instrutor = await _context.Instrutores.FindAsync(id);
+            var instrutor = await _context.Instrutores.FindAsync(idInstrutor);
             if (instrutor == null) return NotFound();
             _context.Instrutores.Remove(instrutor);
             await _context.SaveChangesAsync();
@@ -389,18 +428,18 @@ namespace Gym.Controllers
             return Ok(matricula);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterMatricula(int id)
+        [HttpGet("{idMatricula}")]
+        public async Task<IActionResult> ObterMatricula(int idMatricula)
         {
-            var matricula = await _context.Matriculas.FindAsync(id);
+            var matricula = await _context.Matriculas.FindAsync(idMatricula);
             if (matricula == null) return NotFound();
             return Ok(matricula);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarMatricula(int id)
+        [HttpDelete("deletar/{idMatricula}")]
+        public async Task<IActionResult> DeletarMatricula(int idMatricula)
         {
-            var matricula = await _context.Matriculas.FindAsync(id);
+            var matricula = await _context.Matriculas.FindAsync(idMatricula);
             if (matricula == null) return NotFound();
             _context.Matriculas.Remove(matricula);
             await _context.SaveChangesAsync();
@@ -429,18 +468,18 @@ namespace Gym.Controllers
             return Ok(presenca);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterPresenca(int id)
+        [HttpGet("{idPresenca}")]
+        public async Task<IActionResult> ObterPresenca(int idPresenca)
         {
-            var presenca = await _context.Presencas.FindAsync(id);
+            var presenca = await _context.Presencas.FindAsync(idPresenca);
             if (presenca == null) return NotFound();
             return Ok(presenca);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarPresenca(int id)
+        [HttpDelete("deletar/{idPresenca}")]
+        public async Task<IActionResult> DeletarPresenca(int idPresenca)
         {
-            var presenca = await _context.Presencas.FindAsync(id);
+            var presenca = await _context.Presencas.FindAsync(idPresenca);
             if (presenca == null) return NotFound();
             _context.Presencas.Remove(presenca);
             await _context.SaveChangesAsync();
@@ -470,18 +509,18 @@ namespace Gym.Controllers
             return Ok(progresso);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterProgresso(int id)
+        [HttpGet("{idProgresso}")]
+        public async Task<IActionResult> ObterProgresso(int idProgresso)
         {
-            var progresso = await _context.Progressos.FindAsync(id);
+            var progresso = await _context.Progressos.FindAsync(idProgresso);
             if (progresso == null) return NotFound();
             return Ok(progresso);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarProgresso(int id)
+        [HttpDelete("deletar/{idProgresso}")]
+        public async Task<IActionResult> DeletarProgresso(int idProgresso)
         {
-            var progresso = await _context.Progressos.FindAsync(id);
+            var progresso = await _context.Progressos.FindAsync(idProgresso);
             if (progresso == null) return NotFound();
             _context.Progressos.Remove(progresso);
             await _context.SaveChangesAsync();
@@ -510,18 +549,18 @@ namespace Gym.Controllers
             return Ok(mensagem);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterMensagem(int id)
+        [HttpGet("{idMensagemMotivacional}")]
+        public async Task<IActionResult> ObterMensagem(int idMensagemMotivacional)
         {
-            var mensagem = await _context.MensagensMotivacionais.FindAsync(id);
+            var mensagem = await _context.MensagensMotivacionais.FindAsync(idMensagemMotivacional);
             if (mensagem == null) return NotFound();
             return Ok(mensagem);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarMensagem(int id)
+        [HttpDelete("deletar/{idMensagemMotivacional}")]
+        public async Task<IActionResult> DeletarMensagem(int idMensagemMotivacional)
         {
-            var mensagem = await _context.MensagensMotivacionais.FindAsync(id);
+            var mensagem = await _context.MensagensMotivacionais.FindAsync(idMensagemMotivacional);
             if (mensagem == null) return NotFound();
             _context.MensagensMotivacionais.Remove(mensagem);
             await _context.SaveChangesAsync();
@@ -552,33 +591,33 @@ namespace Gym.Controllers
             return Ok(envioMensagem);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterEnvioMensagem(int id)
+        [HttpGet("{idEnvioMensagem}")]
+        public async Task<IActionResult> ObterEnvioMensagem(int idEnvioMensagem)
         {
-            var envioMensagem = await _context.EnvioMensagens.FindAsync(id);
+            var envioMensagem = await _context.EnvioMensagens.FindAsync(idEnvioMensagem);
             if (envioMensagem == null) return NotFound();
             return Ok(envioMensagem);
         }
 
-        [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeletarEnvioMensagem(int id)
+        [HttpDelete("deletar/{idEnvioMensagem}")]
+        public async Task<IActionResult> DeletarEnvioMensagem(int idEnvioMensagem)
         {
-            var envioMensagem = await _context.EnvioMensagens.FindAsync(id);
+            var envioMensagem = await _context.EnvioMensagens.FindAsync(idEnvioMensagem);
             if (envioMensagem == null) return NotFound();
             _context.EnvioMensagens.Remove(envioMensagem);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("cancelarEnvio/{id}")]
-        public async Task<IActionResult> CancelarEnvioMensagem(int id)
+        [HttpDelete("cancelarEnvio/{idEnvioMensagem}")]
+        public async Task<IActionResult> CancelarEnvioMensagem(int idEnvioMensagem)
         {
-            var envioMensagem = await _context.EnvioMensagens.FindAsync(id);
+            var envioMensagem = await _context.EnvioMensagens.FindAsync(idEnvioMensagem);
 
             if (envioMensagem == null) return NotFound();
 
             // Marcando como cancelado em vez de excluir
-            envioMensagem.Cancelado = true;
+            envioMensagem.Agendado = true;
 
             _context.EnvioMensagens.Update(envioMensagem);
             await _context.SaveChangesAsync();
@@ -589,22 +628,22 @@ namespace Gym.Controllers
         private void AgendarEnvioMensagem(EnvioMensagem envioMensagem)
         {
 
-            if (envioMensagem.DataEnvio > DateTime.Now)
+            if (envioMensagem.DataAgendamento > DateTime.Now)
             {
-                var tempoDeEspera = envioMensagem.DataEnvio - DateTime.Now;
+                var tempoDeEspera = envioMensagem.DataAgendamento - DateTime.Now;
 
 
                 BackgroundJob.Schedule(() => EnviarMensagemWhatsApp(envioMensagem), tempoDeEspera);
             }
             else
             {
-               
+
                 EnviarMensagemWhatsApp(envioMensagem);
             }
         }
         private void EnviarMensagemWhatsApp(EnvioMensagem envioMensagem)
         {
-            if (envioMensagem.Cancelado)
+            if (envioMensagem.Agendado)
             {
                 return;
             }

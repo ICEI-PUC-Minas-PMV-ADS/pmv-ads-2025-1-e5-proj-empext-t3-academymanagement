@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9iqWP6Gt4zI=",
+  "dgSpecHash": "JwnEvhLLlTg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\Gym.csproj",
+  "projectFilePath": "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\Gym.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\apoli\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\apoli\\.nuget\\packages\\hangfire\\1.8.18\\hangfire.1.8.18.nupkg.sha512",

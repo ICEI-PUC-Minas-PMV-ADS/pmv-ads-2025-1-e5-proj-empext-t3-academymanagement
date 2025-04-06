@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gym.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPrimaryKeyToTurmaInstrutor : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdMensagemMotivacional = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Texto = table.Column<string>(type: "text", nullable: false),
                     HorarioEnvio = table.Column<TimeSpan>(type: "interval", nullable: false),
@@ -29,7 +29,7 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MensagensMotivacionais", x => x.Id);
+                    table.PrimaryKey("PK_MensagensMotivacionais", x => x.IdMensagemMotivacional);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,13 +37,13 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdModalidade = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Modalidades", x => x.Id);
+                    table.PrimaryKey("PK_Modalidades", x => x.IdModalidade);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +81,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdTurma = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdModalidade = table.Column<int>(type: "integer", nullable: false),
                     Horario = table.Column<TimeSpan>(type: "interval", nullable: false),
@@ -89,13 +89,13 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Turmas", x => x.Id);
+                    table.PrimaryKey("PK_Turmas", x => x.IdTurma);
                     table.ForeignKey(
                         name: "FK_Turmas_Modalidades_IdModalidade",
                         column: x => x.IdModalidade,
                         principalSchema: "desenvolvimento",
                         principalTable: "Modalidades",
-                        principalColumn: "Id",
+                        principalColumn: "IdModalidade",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -128,7 +128,7 @@ namespace Gym.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PerfilUsuarioPermissao",
+                name: "PerfilUsuarioPermissoes",
                 schema: "desenvolvimento",
                 columns: table => new
                 {
@@ -139,16 +139,16 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PerfilUsuarioPermissao", x => x.idPerfilUsuarioPermissao);
+                    table.PrimaryKey("PK_PerfilUsuarioPermissoes", x => x.idPerfilUsuarioPermissao);
                     table.ForeignKey(
-                        name: "FK_PerfilUsuarioPermissao_PerfisUsuarios_IdPerfilUsuario",
+                        name: "FK_PerfilUsuarioPermissoes_PerfisUsuarios_IdPerfilUsuario",
                         column: x => x.IdPerfilUsuario,
                         principalSchema: "desenvolvimento",
                         principalTable: "PerfisUsuarios",
                         principalColumn: "IdPerfilUsuario",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PerfilUsuarioPermissao_Permissoes_IdPermissao",
+                        name: "FK_PerfilUsuarioPermissoes_Permissoes_IdPermissao",
                         column: x => x.IdPermissao,
                         principalSchema: "desenvolvimento",
                         principalTable: "Permissoes",
@@ -161,7 +161,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdAluno = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdUsuario = table.Column<int>(type: "integer", nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -171,7 +171,7 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Alunos", x => x.Id);
+                    table.PrimaryKey("PK_Alunos", x => x.IdAluno);
                     table.ForeignKey(
                         name: "FK_Alunos_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
@@ -186,7 +186,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdInstrutor = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdUsuario = table.Column<int>(type: "integer", nullable: false),
                     Telefone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
@@ -194,7 +194,7 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Instrutores", x => x.Id);
+                    table.PrimaryKey("PK_Instrutores", x => x.IdInstrutor);
                     table.ForeignKey(
                         name: "FK_Instrutores_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
@@ -209,28 +209,60 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdEnvioMensagem = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdAluno = table.Column<int>(type: "integer", nullable: false),
                     IdMensagem = table.Column<int>(type: "integer", nullable: false),
-                    DataEnvio = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    DataAgendamento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Agendado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnvioMensagens", x => x.Id);
+                    table.PrimaryKey("PK_EnvioMensagens", x => x.IdEnvioMensagem);
                     table.ForeignKey(
                         name: "FK_EnvioMensagens_Alunos_IdAluno",
                         column: x => x.IdAluno,
                         principalSchema: "desenvolvimento",
                         principalTable: "Alunos",
-                        principalColumn: "Id",
+                        principalColumn: "IdAluno",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EnvioMensagens_MensagensMotivacionais_IdMensagem",
                         column: x => x.IdMensagem,
                         principalSchema: "desenvolvimento",
                         principalTable: "MensagensMotivacionais",
-                        principalColumn: "Id",
+                        principalColumn: "IdMensagemMotivacional",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Faltas",
+                schema: "desenvolvimento",
+                columns: table => new
+                {
+                    IdFalta = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdAluno = table.Column<int>(type: "integer", nullable: false),
+                    IdTurma = table.Column<int>(type: "integer", nullable: false),
+                    DataFalta = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Motivo = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Faltas", x => x.IdFalta);
+                    table.ForeignKey(
+                        name: "FK_Faltas_Alunos_IdAluno",
+                        column: x => x.IdAluno,
+                        principalSchema: "desenvolvimento",
+                        principalTable: "Alunos",
+                        principalColumn: "IdAluno",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Faltas_Turmas_IdTurma",
+                        column: x => x.IdTurma,
+                        principalSchema: "desenvolvimento",
+                        principalTable: "Turmas",
+                        principalColumn: "IdTurma",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -239,7 +271,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdMatricula = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdAluno = table.Column<int>(type: "integer", nullable: false),
                     IdTurma = table.Column<int>(type: "integer", nullable: false),
@@ -247,20 +279,20 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Matriculas", x => x.Id);
+                    table.PrimaryKey("PK_Matriculas", x => x.IdMatricula);
                     table.ForeignKey(
                         name: "FK_Matriculas_Alunos_IdAluno",
                         column: x => x.IdAluno,
                         principalSchema: "desenvolvimento",
                         principalTable: "Alunos",
-                        principalColumn: "Id",
+                        principalColumn: "IdAluno",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Matriculas_Turmas_IdTurma",
                         column: x => x.IdTurma,
                         principalSchema: "desenvolvimento",
                         principalTable: "Turmas",
-                        principalColumn: "Id",
+                        principalColumn: "IdTurma",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -269,7 +301,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdPagamento = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdAluno = table.Column<int>(type: "integer", nullable: false),
                     DataVencimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -280,13 +312,13 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pagamentos", x => x.Id);
+                    table.PrimaryKey("PK_Pagamentos", x => x.IdPagamento);
                     table.ForeignKey(
                         name: "FK_Pagamentos_Alunos_IdAluno",
                         column: x => x.IdAluno,
                         principalSchema: "desenvolvimento",
                         principalTable: "Alunos",
-                        principalColumn: "Id",
+                        principalColumn: "IdAluno",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -295,7 +327,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdProgresso = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdAluno = table.Column<int>(type: "integer", nullable: false),
                     DataRegistro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -308,13 +340,13 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Progressos", x => x.Id);
+                    table.PrimaryKey("PK_Progressos", x => x.IdProgresso);
                     table.ForeignKey(
                         name: "FK_Progressos_Alunos_IdAluno",
                         column: x => x.IdAluno,
                         principalSchema: "desenvolvimento",
                         principalTable: "Alunos",
-                        principalColumn: "Id",
+                        principalColumn: "IdAluno",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -336,14 +368,14 @@ namespace Gym.Migrations
                         column: x => x.IdInstrutor,
                         principalSchema: "desenvolvimento",
                         principalTable: "Instrutores",
-                        principalColumn: "Id",
+                        principalColumn: "IdInstrutor",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TurmaInstrutor_Turmas_IdTurma",
                         column: x => x.IdTurma,
                         principalSchema: "desenvolvimento",
                         principalTable: "Turmas",
-                        principalColumn: "Id",
+                        principalColumn: "IdTurma",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -352,7 +384,7 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    IdPresenca = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     IdMatricula = table.Column<int>(type: "integer", nullable: false),
                     Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -360,13 +392,13 @@ namespace Gym.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Presencas", x => x.Id);
+                    table.PrimaryKey("PK_Presencas", x => x.IdPresenca);
                     table.ForeignKey(
                         name: "FK_Presencas_Matriculas_IdMatricula",
                         column: x => x.IdMatricula,
                         principalSchema: "desenvolvimento",
                         principalTable: "Matriculas",
-                        principalColumn: "Id",
+                        principalColumn: "IdMatricula",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -387,6 +419,18 @@ namespace Gym.Migrations
                 schema: "desenvolvimento",
                 table: "EnvioMensagens",
                 column: "IdMensagem");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Faltas_IdAluno",
+                schema: "desenvolvimento",
+                table: "Faltas",
+                column: "IdAluno");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Faltas_IdTurma",
+                schema: "desenvolvimento",
+                table: "Faltas",
+                column: "IdTurma");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Instrutores_IdUsuario",
@@ -413,15 +457,15 @@ namespace Gym.Migrations
                 column: "IdAluno");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PerfilUsuarioPermissao_IdPerfilUsuario",
+                name: "IX_PerfilUsuarioPermissoes_IdPerfilUsuario",
                 schema: "desenvolvimento",
-                table: "PerfilUsuarioPermissao",
+                table: "PerfilUsuarioPermissoes",
                 column: "IdPerfilUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PerfilUsuarioPermissao_IdPermissao",
+                name: "IX_PerfilUsuarioPermissoes_IdPermissao",
                 schema: "desenvolvimento",
-                table: "PerfilUsuarioPermissao",
+                table: "PerfilUsuarioPermissoes",
                 column: "IdPermissao");
 
             migrationBuilder.CreateIndex(
@@ -469,11 +513,15 @@ namespace Gym.Migrations
                 schema: "desenvolvimento");
 
             migrationBuilder.DropTable(
+                name: "Faltas",
+                schema: "desenvolvimento");
+
+            migrationBuilder.DropTable(
                 name: "Pagamentos",
                 schema: "desenvolvimento");
 
             migrationBuilder.DropTable(
-                name: "PerfilUsuarioPermissao",
+                name: "PerfilUsuarioPermissoes",
                 schema: "desenvolvimento");
 
             migrationBuilder.DropTable(

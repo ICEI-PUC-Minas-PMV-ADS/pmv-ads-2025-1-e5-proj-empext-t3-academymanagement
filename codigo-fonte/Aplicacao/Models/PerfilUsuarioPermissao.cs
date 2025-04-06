@@ -9,10 +9,10 @@ namespace Gym.Models
         public int idPerfilUsuarioPermissao { get; set; }
         public int IdPerfilUsuario { get; set; }
         [ForeignKey("IdPerfilUsuario")]
-        public PerfilUsuario PerfilUsuario { get; set; }
+        public PerfilUsuario? PerfilUsuario { get; set; }
 
         public int IdPermissao { get; set; }
         [ForeignKey("IdPermissao")]
-        public Permissao Permissao { get; set; }
+        public Permissao? Permissao { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace Gym.Models
     public class Turma
     {
         [Key]
-        public int Id { get; set; }
+        public int IdTurma { get; set; }
 
         public int IdModalidade { get; set; }
         [ForeignKey("IdModalidade")]

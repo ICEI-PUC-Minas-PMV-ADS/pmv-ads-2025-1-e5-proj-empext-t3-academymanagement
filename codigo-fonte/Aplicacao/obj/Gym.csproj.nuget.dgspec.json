@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\Gym.csproj": {}
+    "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\Gym.csproj": {}
   },
   "projects": {
-    "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\Gym.csproj": {
+    "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\Gym.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\Gym.csproj",
+        "projectUniqueName": "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\Gym.csproj",
         "projectName": "Gym",
-        "projectPath": "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\Gym.csproj",
+        "projectPath": "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\Gym.csproj",
         "packagesPath": "C:\\Users\\apoli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\apoli\\OneDrive\\Área de Trabalho\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo gym\\Aplicacao\\obj\\",
+        "outputPath": "C:\\Users\\apoli\\Downloads\\projetos\\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\\codigo-fonte\\Aplicacao\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
