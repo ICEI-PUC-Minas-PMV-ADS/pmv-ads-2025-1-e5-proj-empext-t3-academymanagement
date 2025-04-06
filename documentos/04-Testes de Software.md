@@ -102,7 +102,6 @@ Garante que o cadastro seja efetuado com sucesso
 
 ![image](https://github.com/user-attachments/assets/051b935d-3d0e-4092-b8c0-3fc1becc16b7)
 ![image](https://github.com/user-attachments/assets/d0a0f3d8-0e8f-4482-92f8-a697247d8168)
-![image](https://github.com/user-attachments/assets/294cac64-0de8-4b9d-8919-3fc68b67b6a6)
 
 Login com o usuario que acabou de ser cadastrado
 
