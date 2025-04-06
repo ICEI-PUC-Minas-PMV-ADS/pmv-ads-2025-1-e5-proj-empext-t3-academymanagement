@@ -7,18 +7,12 @@ namespace Gym.Models
     {
         [Key]
         public int IdAluno { get; set; }
-
+        [Required, MaxLength(20)]
+        public string Matricula { get; set; }
         public int IdUsuario { get; set; }
+
         [ForeignKey("IdUsuario")]
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
-        public DateTime DataNascimento { get; set; }
-
-        public SexoEnum Sexo { get; set; }
-
-        [MaxLength(15)]
-        public string Telefone { get; set; }
-
-        public string Endereco { get; set; }
     }
 }

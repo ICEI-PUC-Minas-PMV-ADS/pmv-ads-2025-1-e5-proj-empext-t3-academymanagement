@@ -18,20 +18,29 @@ namespace Gym.Models
         [Required, MaxLength(100)]
         public string Email { get; set; }
 
-        [Required, MaxLength(50)]
-        public string Codigo { get; set; }
-
-        [Required, MaxLength(255)]
+        [Required]
         public string Senha { get; set; }
 
         public bool Ativo { get; set; }
 
-        public int IdPerfilUsuario { get; set; }
-        [ForeignKey("IdPerfilUsuario")]
-        public PerfilUsuario PerfilUsuario { get; set; }
+        public DateTime DataNascimento { get; set; }
 
-        public string Token { get; set; }
+        public SexoEnum Sexo { get; set; }
+
+        [MaxLength(15)]
+        public string Telefone { get; set; }
+
+        [MaxLength(255)]
+        public string Endereco { get; set; }
+
+        public int IdPerfilUsuario { get; set; }
+
+        [ForeignKey("IdPerfilUsuario")]
+        public PerfilUsuario? PerfilUsuario { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
+        public string? Token { get; set; }
 
     }
+
 
 }

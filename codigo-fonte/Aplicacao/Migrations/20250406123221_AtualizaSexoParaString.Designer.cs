@@ -3,6 +3,7 @@ using System;
 using Gym.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,14 +12,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250406123221_AtualizaSexoParaString")]
+    partial class AtualizaSexoParaString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("desenvolvimento")
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -31,13 +34,24 @@ namespace Gym.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAluno"));
 
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("IdUsuario")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Matricula")
+                    b.Property<string>("Sexo")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.HasKey("IdAluno");
 
@@ -113,13 +127,18 @@ namespace Gym.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdInstrutor"));
 
-                    b.Property<string>("CodigoInstrutor")
+                    b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("IdUsuario")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.HasKey("IdInstrutor");
 
@@ -216,11 +235,11 @@ namespace Gym.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Observacao")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Valor")
                         .HasColumnType("numeric");
@@ -420,23 +439,20 @@ namespace Gym.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
                     b.Property<int>("IdPerfilUsuario")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PerfilUsuarioIdPerfilUsuario")
                         .HasColumnType("integer");
 
                     b.Property<string>("PrimeiroNome")
@@ -446,28 +462,20 @@ namespace Gym.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("Sobrenome")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
-
                     b.Property<string>("Token")
                         .HasColumnType("text");
 
                     b.HasKey("IdUsuario");
 
-                    b.HasIndex("IdPerfilUsuario");
+                    b.HasIndex("PerfilUsuarioIdPerfilUsuario");
 
                     b.ToTable("Usuarios", "desenvolvimento");
                 });
@@ -485,7 +493,7 @@ namespace Gym.Migrations
 
             modelBuilder.Entity("Gym.Models.EnvioMensagem", b =>
                 {
-                    b.HasOne("Gym.Models.Usuario", "UsuarioAluno")
+                    b.HasOne("Gym.Models.Aluno", "Aluno")
                         .WithMany()
                         .HasForeignKey("IdAluno")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -497,9 +505,9 @@ namespace Gym.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Mensagem");
+                    b.Navigation("Aluno");
 
-                    b.Navigation("UsuarioAluno");
+                    b.Navigation("Mensagem");
                 });
 
             modelBuilder.Entity("Gym.Models.Falta", b =>
@@ -637,9 +645,7 @@ namespace Gym.Migrations
                 {
                     b.HasOne("Gym.Models.PerfilUsuario", "PerfilUsuario")
                         .WithMany()
-                        .HasForeignKey("IdPerfilUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PerfilUsuarioIdPerfilUsuario");
 
                     b.Navigation("PerfilUsuario");
                 });

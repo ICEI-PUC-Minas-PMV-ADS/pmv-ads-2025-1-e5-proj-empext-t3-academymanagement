@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Gym.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gym.Data
 {
     public class ApplicationDbContext : DbContext
@@ -33,6 +34,24 @@ namespace Gym.Data
             modelBuilder.HasDefaultSchema(_schema);
             base.OnModelCreating(modelBuilder);
 
+            var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
+        v => v.ToUniversalTime(), 
+        v => DateTime.SpecifyKind(v, DateTimeKind.Utc) 
+    );
+
+         
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                var properties = entityType.ClrType.GetProperties()
+                    .Where(p => p.PropertyType == typeof(DateTime) || p.PropertyType == typeof(DateTime?));
+
+                foreach (var property in properties)
+                {
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(property.Name)
+                        .HasConversion(dateTimeConverter);
+                }
+            }
             modelBuilder.Entity<PerfilUsuarioPermissao>().ToTable("PerfilUsuarioPermissoes", _schema);
 
             modelBuilder.Entity<PerfilUsuarioPermissao>()
@@ -50,6 +69,22 @@ namespace Gym.Data
                 .HasForeignKey(p => p.IdPerfilUsuario)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Usuario>()
+           .Property(a => a.Sexo)
+           .HasConversion<string>();
+
+            modelBuilder.Entity<Pagamento>()
+           .Property(a => a.Status)
+           .HasConversion<string>();
+
+            modelBuilder.Entity<Instrutor>()
+    .HasOne(i => i.Usuario)
+    .WithMany()
+    .HasForeignKey(i => i.IdUsuario)
+    .OnDelete(DeleteBehavior.Cascade);
+
+
         }
+
     }
 }

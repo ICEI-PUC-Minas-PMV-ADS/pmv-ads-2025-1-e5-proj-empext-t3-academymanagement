@@ -41,13 +41,15 @@ namespace Gym.Controllers
 
             var token = GerarToken(usuario);
 
+            usuario.Token = token; 
+            await _context.SaveChangesAsync();
+
             var usuarioLogado = new
             {
                 id = usuario.IdUsuario,
                 primeiroNome = usuario.PrimeiroNome,
                 sobrenome = usuario.Sobrenome,
                 email = usuario.Email,
-                codigo = usuario.Codigo,
                 ativo = usuario.Ativo,
                 idPerfilUsuario = usuario.IdPerfilUsuario,
                 perfilUsuario = usuario.PerfilUsuario,
@@ -64,14 +66,19 @@ namespace Gym.Controllers
         public async Task<IActionResult> ObterUsuarioLogado()
         {
             var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var tokenAtual = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (usuarioId == null) return Unauthorized();
+            if (string.IsNullOrEmpty(usuarioId)) return Unauthorized("Usuário não autenticado.");
 
             var usuario = await _context.Usuarios
                 .Include(u => u.PerfilUsuario)
                 .FirstOrDefaultAsync(u => u.IdUsuario == int.Parse(usuarioId));
 
-            if (usuario == null) return NotFound();
+            if (usuario == null) return NotFound("Usuário não encontrado.");
+
+         
+            if (string.IsNullOrEmpty(usuario.Token) || usuario.Token != tokenAtual)
+                return Unauthorized("Sessão expirada ou inválida. Realize login novamente.");
 
             var usuarioLogado = new
             {
@@ -79,13 +86,32 @@ namespace Gym.Controllers
                 primeiroNome = usuario.PrimeiroNome,
                 sobrenome = usuario.Sobrenome,
                 email = usuario.Email,
-                codigo = usuario.Codigo,
                 ativo = usuario.Ativo,
                 idPerfilUsuario = usuario.IdPerfilUsuario,
                 perfilUsuario = usuario.PerfilUsuario
             };
 
             return Ok(usuarioLogado);
+        }
+
+        [Authorize]
+        [HttpPost("logoff")]
+        public async Task<IActionResult> Logoff()
+        {
+            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (usuarioId == null)
+                return Unauthorized();
+
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(usuarioId));
+
+            if (usuario == null)
+                return NotFound("Usuário não encontrado.");
+
+            usuario.Token = null; 
+            await _context.SaveChangesAsync();
+
+            return Ok("Logoff realizado com sucesso.");
         }
         #endregion
 

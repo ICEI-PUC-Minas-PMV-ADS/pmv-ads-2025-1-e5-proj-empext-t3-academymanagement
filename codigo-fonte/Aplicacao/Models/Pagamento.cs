@@ -10,14 +10,14 @@ namespace Gym.Models
 
         public int IdAluno { get; set; }
         [ForeignKey("IdAluno")]
-        public Aluno Aluno { get; set; }
+        public Aluno? Aluno { get; set; }
 
         public DateTime DataVencimento { get; set; }
 
         public DateTime? DataPagamento { get; set; }
 
         public decimal Valor { get; set; }
-        public string Observacao { get; set; }
+        public string? Observacao { get; set; }
 
         public StatusPagamento Status { get; set; }
     }

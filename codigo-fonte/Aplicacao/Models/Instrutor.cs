@@ -8,14 +8,13 @@ namespace Gym.Models
         [Key]
         public int IdInstrutor { get; set; }
 
+        [Required, MaxLength(20)]
+        public string CodigoInstrutor { get; set; }
         public int IdUsuario { get; set; }
+
         [ForeignKey("IdUsuario")]
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
-        [MaxLength(15)]
-        public string Telefone { get; set; }
 
-        [MaxLength(100)]
-        public string Email { get; set; }
     }
 }

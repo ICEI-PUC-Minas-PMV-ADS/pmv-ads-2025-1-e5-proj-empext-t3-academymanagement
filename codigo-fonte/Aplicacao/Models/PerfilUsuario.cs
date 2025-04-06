@@ -12,6 +12,6 @@ namespace Gym.Models
 
         public string Descricao { get; set; }
 
-        public ICollection<PerfilUsuarioPermissao> PerfilPermissoes { get; set; }
+        public ICollection<PerfilUsuarioPermissao>? PerfilPermissoes { get; set; }
     }
 }
