@@ -20,6 +20,10 @@ Tela - Controle de frequência:
 Tela - Gestão financeira:
 ![image](https://github.com/user-attachments/assets/0ab48078-5c43-4d12-865b-8ca665370902)
 
+Tela - Login:
+![image](https://github.com/user-attachments/assets/3c63441e-d65e-483b-9943-8f509dba32c8)
+
+
 Visão do usuário:
 
 Tela - Registrar Presença:
