@@ -2,13 +2,13 @@
   {
     "ContainingType": "Gym.Controllers.AlunosController",
     "Method": "AtualizarAluno",
-    "RelativePath": "Alunos/atualizar/{id}",
+    "RelativePath": "Alunos/atualizar/{idAluno}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "idAluno",
         "Type": "System.Int32",
         "IsRequired": true
       },
@@ -23,13 +23,13 @@
   {
     "ContainingType": "Gym.Controllers.AlunosController",
     "Method": "DeletarAluno",
-    "RelativePath": "Alunos/deletar/{id}",
+    "RelativePath": "Alunos/deletar/{idAluno}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "idAluno",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -66,6 +66,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.AcessoController",
+    "Method": "Logoff",
+    "RelativePath": "api/Acesso/logoff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -222,6 +232,27 @@
       {
         "Name": "idMatricula",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.MatriculaController",
+    "Method": "AtualizarMatricula",
+    "RelativePath": "Matricula/atualizar/{idMatricula}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMatricula",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "matriculaAtualizada",
+        "Type": "Gym.Models.Matricula",
         "IsRequired": true
       }
     ],
@@ -392,7 +423,7 @@
       {
         "Name": "status",
         "Type": "System.String",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -424,6 +455,32 @@
       {
         "Name": "pagamento",
         "Type": "Gym.Models.Pagamento",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.PagamentoController",
+    "Method": "ListarPagamentosComAlunos",
+    "RelativePath": "Pagamento/listarPagamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.PagamentoController",
+    "Method": "BuscarPagamentoPorId",
+    "RelativePath": "Pagamento/obter/{idPagamento}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPagamento",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -564,19 +621,25 @@
   },
   {
     "ContainingType": "Gym.Controllers.PermissaoController",
-    "Method": "VincularPermissaoAoPerfil",
+    "Method": "VincularPermissoes",
     "RelativePath": "Permissao/vincularPerfil",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "vinculo",
-        "Type": "Gym.Models.PerfilUsuarioPermissao",
+        "Name": "dto",
+        "Type": "Gym.Models.VinculoPermissaoPerfilDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Gym.Controllers.PresencaController",
@@ -676,22 +739,6 @@
   },
   {
     "ContainingType": "Gym.Controllers.UsuariosController",
-    "Method": "IncluirUsuario",
-    "RelativePath": "Usuarios",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "usuario",
-        "Type": "Gym.Models.Usuario",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym.Controllers.UsuariosController",
     "Method": "ObterUsuario",
     "RelativePath": "Usuarios/{idUsuario}",
     "HttpMethod": "GET",
@@ -708,8 +755,29 @@
   },
   {
     "ContainingType": "Gym.Controllers.UsuariosController",
+    "Method": "AtivarDesativarUsuario",
+    "RelativePath": "Usuarios/ativarDesativar/{idUsuario}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ativo",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.UsuariosController",
     "Method": "AtualizarUsuario",
-    "RelativePath": "Usuarios/{idUsuario}",
+    "RelativePath": "Usuarios/atualizar/{idUsuario}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -730,7 +798,7 @@
   {
     "ContainingType": "Gym.Controllers.UsuariosController",
     "Method": "DeletarUsuario",
-    "RelativePath": "Usuarios/{idUsuario}",
+    "RelativePath": "Usuarios/deletar/{idUsuario}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -738,6 +806,22 @@
       {
         "Name": "idUsuario",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.UsuariosController",
+    "Method": "IncluirUsuario",
+    "RelativePath": "Usuarios/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "Gym.Models.Usuario",
         "IsRequired": true
       }
     ],

@@ -48,6 +48,18 @@
         }
       }
     },
+    "/api/Acesso/logoff": {
+      "post": {
+        "tags": [
+          "Acesso"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Alunos/inserir": {
       "post": {
         "tags": [
@@ -79,14 +91,14 @@
         }
       }
     },
-    "/Alunos/atualizar/{id}": {
+    "/Alunos/atualizar/{idAluno}": {
       "put": {
         "tags": [
           "Alunos"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idAluno",
             "in": "path",
             "required": true,
             "schema": {
@@ -121,14 +133,14 @@
         }
       }
     },
-    "/Alunos/deletar/{id}": {
+    "/Alunos/deletar/{idAluno}": {
       "delete": {
         "tags": [
           "Alunos"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idAluno",
             "in": "path",
             "required": true,
             "schema": {
@@ -417,6 +429,48 @@
         }
       }
     },
+    "/Matricula/atualizar/{idMatricula}": {
+      "put": {
+        "tags": [
+          "Matricula"
+        ],
+        "parameters": [
+          {
+            "name": "idMatricula",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Matricula/deletar/{idMatricula}": {
       "delete": {
         "tags": [
@@ -681,12 +735,47 @@
               "type": "integer",
               "format": "int32"
             }
-          },
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pagamento/deletar/{idPagamento}": {
+      "delete": {
+        "tags": [
+          "Pagamento"
+        ],
+        "parameters": [
           {
-            "name": "status",
-            "in": "query",
+            "name": "idPagamento",
+            "in": "path",
+            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/StatusPagamento"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -697,8 +786,20 @@
         }
       }
     },
-    "/Pagamento/deletar/{idPagamento}": {
-      "delete": {
+    "/Pagamento/listarPagamentos": {
+      "get": {
+        "tags": [
+          "Pagamento"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pagamento/obter/{idPagamento}": {
+      "get": {
         "tags": [
           "Pagamento"
         ],
@@ -994,17 +1095,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PerfilUsuarioPermissao"
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PerfilUsuarioPermissao"
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PerfilUsuarioPermissao"
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
               }
             }
           }
@@ -1170,7 +1271,7 @@
         }
       }
     },
-    "/Usuarios": {
+    "/Usuarios/inserir": {
       "post": {
         "tags": [
           "Usuarios"
@@ -1222,7 +1323,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Usuarios/atualizar/{idUsuario}": {
       "put": {
         "tags": [
           "Usuarios"
@@ -1262,7 +1365,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Usuarios/deletar/{idUsuario}": {
       "delete": {
         "tags": [
           "Usuarios"
@@ -1284,16 +1389,54 @@
           }
         }
       }
+    },
+    "/Usuarios/ativarDesativar/{idUsuario}": {
+      "patch": {
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ativo",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "Aluno": {
+        "required": [
+          "matricula"
+        ],
         "type": "object",
         "properties": {
           "idAluno": {
             "type": "integer",
             "format": "int32"
+          },
+          "matricula": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           },
           "idUsuario": {
             "type": "integer",
@@ -1301,22 +1444,6 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
-          },
-          "dataNascimento": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "sexo": {
-            "$ref": "#/components/schemas/SexoEnum"
-          },
-          "telefone": {
-            "maxLength": 15,
-            "type": "string",
-            "nullable": true
-          },
-          "endereco": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1332,8 +1459,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "aluno": {
-            "$ref": "#/components/schemas/Aluno"
+          "usuarioAluno": {
+            "$ref": "#/components/schemas/Usuario"
           },
           "idMensagem": {
             "type": "integer",
@@ -1353,11 +1480,19 @@
         "additionalProperties": false
       },
       "Instrutor": {
+        "required": [
+          "codigoInstrutor"
+        ],
         "type": "object",
         "properties": {
           "idInstrutor": {
             "type": "integer",
             "format": "int32"
+          },
+          "codigoInstrutor": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           },
           "idUsuario": {
             "type": "integer",
@@ -1365,16 +1500,6 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
-          },
-          "telefone": {
-            "maxLength": 15,
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "maxLength": 100,
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1657,20 +1782,18 @@
       },
       "SexoEnum": {
         "enum": [
-          0,
-          1
+          "Masculino",
+          "Feminino"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "StatusPagamento": {
         "enum": [
-          0,
-          1,
-          2
+          "Pendente",
+          "Pago",
+          "Atrasado"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "Turma": {
         "type": "object",
@@ -1739,7 +1862,6 @@
       },
       "Usuario": {
         "required": [
-          "codigo",
           "email",
           "primeiroNome",
           "senha",
@@ -1766,18 +1888,29 @@
             "minLength": 1,
             "type": "string"
           },
-          "codigo": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string"
-          },
           "senha": {
-            "maxLength": 255,
             "minLength": 1,
             "type": "string"
           },
           "ativo": {
             "type": "boolean"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sexo": {
+            "$ref": "#/components/schemas/SexoEnum"
+          },
+          "telefone": {
+            "maxLength": 15,
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
           },
           "idPerfilUsuario": {
             "type": "integer",
@@ -1786,8 +1919,30 @@
           "perfilUsuario": {
             "$ref": "#/components/schemas/PerfilUsuario"
           },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
           "token": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VinculoPermissaoPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "idPerfilUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idPermissoes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
             "nullable": true
           }
         },
