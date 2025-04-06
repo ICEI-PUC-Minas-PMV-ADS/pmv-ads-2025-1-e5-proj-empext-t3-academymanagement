@@ -93,7 +93,7 @@ Apresente os casos de testes utilizados na realização da verificação e valid
  
 # Evidências de Testes de Software
 
-Garante que o e-mail precisa estar registrado no banco de dados
+Realizando o login, garante que o e-mail precisa estar registrado no banco de dados
 
 ![image](https://github.com/user-attachments/assets/0e4bc1c0-9ff3-4a64-bbe2-54f1c6035470)
 ![image](https://github.com/user-attachments/assets/2d144673-7370-4f92-9020-65763de29512)
