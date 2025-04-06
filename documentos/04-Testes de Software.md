@@ -93,7 +93,34 @@ Apresente os casos de testes utilizados na realização da verificação e valid
  
 # Evidências de Testes de Software
 
-Apresente imagens e/ou vídeos que comprovam que um determinado teste foi executado, e o resultado esperado foi obtido. Normalmente são screenshots de telas, ou vídeos do software em funcionamento.
+Realizando o login, garante que o e-mail precisa estar registrado no banco de dados
+
+![image](https://github.com/user-attachments/assets/0e4bc1c0-9ff3-4a64-bbe2-54f1c6035470)
+![image](https://github.com/user-attachments/assets/2d144673-7370-4f92-9020-65763de29512)
+
+Garante que o cadastro seja efetuado com sucesso
+
+![image](https://github.com/user-attachments/assets/051b935d-3d0e-4092-b8c0-3fc1becc16b7)
+![image](https://github.com/user-attachments/assets/d0a0f3d8-0e8f-4482-92f8-a697247d8168)
+
+Login com o usuario que acabou de ser cadastrado
+
+![image](https://github.com/user-attachments/assets/ed156244-00d2-41b2-b8f1-9475974de290)
+![image](https://github.com/user-attachments/assets/9a0dd6f5-5c65-4ee8-aff0-c3b7413effdd)
+
+Alterar nome do usuario
+
+![image](https://github.com/user-attachments/assets/19a95dd2-3182-42ad-b5f8-2a60bb5996b0)
+
+Login depois de alterar o nome do usuario
+
+![image](https://github.com/user-attachments/assets/44aeee54-d25d-429e-a6b7-5e7fbab9582f)
+
+Testando o login antigo e por algum motivo está dando erro nas credenciais 
+
+![image](https://github.com/user-attachments/assets/63197903-4bb5-4b48-81d3-3c73e20b408a)
+
+após os testes, resolvemos todo os bugs ajustando a API no end point de atualização dos dados do usário.
 
 ## Parte 1 - Testes Unitários
 Cada funcionalidade desenvolvida deve ser testada utilizando os casos de testes (sucesso e insucesso) criados pelo responsável pela funcionalidade. Todos os testes devem ser evidenciados.
