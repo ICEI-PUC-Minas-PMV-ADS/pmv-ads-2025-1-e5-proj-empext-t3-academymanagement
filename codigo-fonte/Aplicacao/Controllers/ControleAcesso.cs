@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace Gym.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AcessoController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -36,7 +36,7 @@ namespace Gym.Controllers
             if (usuario == null)
                 return Unauthorized(new { mensagem = "Usuário não encontrado" });
 
-            if (!BCrypt.Net.BCrypt.Verify(loginDTO.Senha, usuario.Senha))
+            if (!BCrypt.Net.BCrypt.Verify(loginDTO.Password, usuario.Senha))
                 return Unauthorized(new { mensagem = "Senha inválida" });
 
             var token = GerarToken(usuario);

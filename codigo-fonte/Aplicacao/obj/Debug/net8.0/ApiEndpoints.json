@@ -1,5 +1,41 @@
 [
   {
+    "ContainingType": "Gym.Controllers.AcessoController",
+    "Method": "Login",
+    "RelativePath": "Acesso/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "Gym.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.AcessoController",
+    "Method": "Logoff",
+    "RelativePath": "Acesso/logoff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.AcessoController",
+    "Method": "ObterUsuarioLogado",
+    "RelativePath": "Acesso/ObterUsuarioLogado",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym.Controllers.AlunosController",
     "Method": "AtualizarAluno",
     "RelativePath": "Alunos/atualizar/{idAluno}",
@@ -50,42 +86,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym.Controllers.AcessoController",
-    "Method": "Login",
-    "RelativePath": "api/Acesso/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "loginDTO",
-        "Type": "Gym.Models.Login",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym.Controllers.AcessoController",
-    "Method": "Logoff",
-    "RelativePath": "api/Acesso/logoff",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gym.Controllers.AcessoController",
-    "Method": "ObterUsuarioLogado",
-    "RelativePath": "api/Acesso/ObterUsuarioLogado",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

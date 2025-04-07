@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Acesso/login": {
+    "/Acesso/login": {
       "post": {
         "tags": [
           "Acesso"
@@ -36,7 +36,7 @@
         }
       }
     },
-    "/api/Acesso/ObterUsuarioLogado": {
+    "/Acesso/ObterUsuarioLogado": {
       "get": {
         "tags": [
           "Acesso"
@@ -48,7 +48,7 @@
         }
       }
     },
-    "/api/Acesso/logoff": {
+    "/Acesso/logoff": {
       "post": {
         "tags": [
           "Acesso"
@@ -1511,7 +1511,7 @@
             "type": "string",
             "nullable": true
           },
-          "senha": {
+          "password": {
             "type": "string",
             "nullable": true
           }

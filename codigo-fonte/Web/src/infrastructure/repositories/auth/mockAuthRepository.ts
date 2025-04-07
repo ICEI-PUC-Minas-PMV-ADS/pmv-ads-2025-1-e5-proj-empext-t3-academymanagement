@@ -8,8 +8,9 @@ export const mockAuthRepository: IAuthRepository = {
 		await simulateDelay(500);
 
 		const user = mockUsers.find(
-			(u) => u.email === email && u.password === password,
+			(u) => u.email === email && u.password === password
 		);
+
 		if (!user) {
 			throw new Error('Usuário ou senha inválidos');
 		}
@@ -18,7 +19,7 @@ export const mockAuthRepository: IAuthRepository = {
 			success: true,
 			message: 'Autenticação realizada com sucesso.',
 			data: {
-				user: mockUsers[0],
+				user,
 				token: process.env.NEXT_PUBLIC_FIXED_TOKEN || '',
 			},
 		};
