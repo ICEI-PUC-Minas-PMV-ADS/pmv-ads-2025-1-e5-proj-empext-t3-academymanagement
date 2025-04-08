@@ -10,11 +10,11 @@ namespace Gym.Models
 
         public int IdAluno { get; set; }
         [ForeignKey("IdAluno")]
-        public Usuario UsuarioAluno { get; set; }
+        public Usuario? UsuarioAluno { get; set; }
 
         public int IdMensagem { get; set; }
         [ForeignKey("IdMensagem")]
-        public MensagemMotivacional Mensagem { get; set; }
+        public MensagemMotivacional? Mensagem { get; set; }
 
         public DateTime DataAgendamento { get; set; }
         public bool Agendado { get; set; } 

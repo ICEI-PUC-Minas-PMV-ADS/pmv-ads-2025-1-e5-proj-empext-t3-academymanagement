@@ -730,6 +730,9 @@ namespace Gym.Controllers
         [HttpPost("inserir")]
         public async Task<IActionResult> InserirPresenca([FromBody] Presenca presenca)
         {
+            var matriculaExiste = await _context.Matriculas.AnyAsync(m => m.IdMatricula == presenca.IdMatricula);
+            if (!matriculaExiste)
+                return BadRequest("Matrícula não encontrada.");
             _context.Presencas.Add(presenca);
             await _context.SaveChangesAsync();
             return Ok(presenca);
@@ -771,6 +774,11 @@ namespace Gym.Controllers
         [HttpPost("inserir")]
         public async Task<IActionResult> InserirProgresso([FromBody] Progresso progresso)
         {
+            var alunoExiste = await _context.Alunos.AnyAsync(a => a.IdAluno == progresso.IdAluno);
+            if (!alunoExiste)
+                return BadRequest("Aluno não encontrado.");
+
+            progresso.DataRegistro = DateTime.UtcNow;
             _context.Progressos.Add(progresso);
             await _context.SaveChangesAsync();
             return Ok(progresso);
@@ -927,6 +935,74 @@ namespace Gym.Controllers
             to: new Twilio.Types.PhoneNumber($"whatsapp:{numeroDestino}")
             );
         }
+
+    }
+    #endregion
+
+    #region Turma
+    [ApiController]
+    [Route("[controller]")]
+    public class TurmaController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+
+        public TurmaController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpPost("inserir")]
+        public async Task<IActionResult> InserirTurma([FromBody] Turma turma)
+        {
+            _context.Turmas.Add(turma);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(ObterTurma), new { id = turma.IdTurma }, turma);
+        }
+
+        [HttpPut("atualizar/{id}")]
+        public async Task<IActionResult> AtualizarTurma(int id, [FromBody] Turma turmaAtualizada)
+        {
+            var turma = await _context.Turmas.FindAsync(id);
+            if (turma == null)
+                return NotFound("Turma não encontrada.");
+
+            turma.IdModalidade = turmaAtualizada.IdModalidade;
+            turma.Horario = turmaAtualizada.Horario;
+            turma.Capacidade = turmaAtualizada.Capacidade;
+
+            _context.Turmas.Update(turma);
+            await _context.SaveChangesAsync();
+
+            return Ok(turma);
+        }
+        [HttpDelete("deletar/{id}")]
+        public async Task<IActionResult> DeletarTurma(int id)
+        {
+            var turma = await _context.Turmas.FindAsync(id);
+            if (turma == null)
+                return NotFound("Turma não encontrada.");
+
+            _context.Turmas.Remove(turma);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpGet("obter/{id}")]
+        public async Task<IActionResult> ObterTurma(int id)
+        {
+            var turma = await _context.Turmas
+                .Include(t => t.Modalidade)
+                .Include(t => t.TurmaInstrutores)
+                    .ThenInclude(ti => ti.Instrutor)
+                        .ThenInclude(i => i.Usuario)
+                .FirstOrDefaultAsync(t => t.IdTurma == id);
+
+            if (turma == null)
+                return NotFound("Turma não encontrada.");
+
+            return Ok(turma);
+        }
+
 
     }
     #endregion

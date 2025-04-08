@@ -1,4 +1,5 @@
-﻿namespace Gym.Models
+﻿
+namespace Gym.Models
 {
     public class Login
     {

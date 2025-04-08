@@ -10,7 +10,7 @@ namespace Gym.Models
 
         public int IdMatricula { get; set; }
         [ForeignKey("IdMatricula")]
-        public Matricula Matricula { get; set; }
+        public Matricula? Matricula { get; set; }
 
         public DateTime Data { get; set; }
 

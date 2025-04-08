@@ -10,7 +10,7 @@ namespace Gym.Models
 
         public int IdAluno { get; set; }
         [ForeignKey("IdAluno")]
-        public Aluno Aluno { get; set; }
+        public Aluno? Aluno { get; set; }
 
         public DateTime DataRegistro { get; set; }
 
