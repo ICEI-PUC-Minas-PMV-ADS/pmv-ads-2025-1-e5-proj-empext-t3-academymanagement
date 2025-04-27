@@ -738,6 +738,75 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Gym.Controllers.TurmaController",
+    "Method": "AtualizarTurma",
+    "RelativePath": "Turma/atualizar/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "turmaAtualizada",
+        "Type": "Gym.Models.Turma",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.TurmaController",
+    "Method": "DeletarTurma",
+    "RelativePath": "Turma/deletar/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.TurmaController",
+    "Method": "InserirTurma",
+    "RelativePath": "Turma/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "turma",
+        "Type": "Gym.Models.Turma",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gym.Controllers.TurmaController",
+    "Method": "ObterTurma",
+    "RelativePath": "Turma/obter/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Gym.Controllers.UsuariosController",
     "Method": "ObterUsuario",
     "RelativePath": "Usuarios/{idUsuario}",
