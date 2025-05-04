@@ -5,7 +5,7 @@ namespace Gym.Models
     public class Modalidade
     {
         [Key]
-        public int Id { get; set; }
+        public int IdModalidade { get; set; }
 
         [Required, MaxLength(50)]
         public string Nome { get; set; }

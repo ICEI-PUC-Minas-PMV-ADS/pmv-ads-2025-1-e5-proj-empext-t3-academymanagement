@@ -8,13 +8,12 @@ namespace Gym.Models
     {
         [Key]
         public int IdFalta { get; set; }
-
-        [ForeignKey("Aluno")]
         public int IdAluno { get; set; }
+        [ForeignKey("IdAluno")]
         public Aluno Aluno { get; set; }  
 
-        [ForeignKey("Turma")]
         public int IdTurma { get; set; }
+        [ForeignKey("IdTurma")]
         public Turma Turma { get; set; }  
 
         [Required]

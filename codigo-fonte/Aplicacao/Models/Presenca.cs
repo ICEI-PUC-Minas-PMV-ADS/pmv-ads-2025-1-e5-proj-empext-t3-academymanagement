@@ -6,11 +6,11 @@ namespace Gym.Models
     public class Presenca
     {
         [Key]
-        public int Id { get; set; }
+        public int IdPresenca { get; set; }
 
         public int IdMatricula { get; set; }
         [ForeignKey("IdMatricula")]
-        public Matricula Matricula { get; set; }
+        public Matricula? Matricula { get; set; }
 
         public DateTime Data { get; set; }
 

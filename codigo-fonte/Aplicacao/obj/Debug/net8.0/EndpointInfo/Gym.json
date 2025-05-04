@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Acesso/login": {
+    "/Acesso/login": {
       "post": {
         "tags": [
           "Acesso"
@@ -36,8 +36,20 @@
         }
       }
     },
-    "/api/Acesso/ObterUsuarioLogado": {
+    "/Acesso/ObterUsuarioLogado": {
       "get": {
+        "tags": [
+          "Acesso"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Acesso/logoff": {
+      "post": {
         "tags": [
           "Acesso"
         ],
@@ -79,14 +91,14 @@
         }
       }
     },
-    "/Alunos/atualizar/{id}": {
+    "/Alunos/atualizar/{idAluno}": {
       "put": {
         "tags": [
           "Alunos"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idAluno",
             "in": "path",
             "required": true,
             "schema": {
@@ -121,14 +133,14 @@
         }
       }
     },
-    "/Alunos/deletar/{id}": {
+    "/Alunos/deletar/{idAluno}": {
       "delete": {
         "tags": [
           "Alunos"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idAluno",
             "in": "path",
             "required": true,
             "schema": {
@@ -175,14 +187,14 @@
         }
       }
     },
-    "/EnvioMensagem/{id}": {
+    "/EnvioMensagem/{idEnvioMensagem}": {
       "get": {
         "tags": [
           "EnvioMensagem"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idEnvioMensagem",
             "in": "path",
             "required": true,
             "schema": {
@@ -198,14 +210,14 @@
         }
       }
     },
-    "/EnvioMensagem/deletar/{id}": {
+    "/EnvioMensagem/deletar/{idEnvioMensagem}": {
       "delete": {
         "tags": [
           "EnvioMensagem"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idEnvioMensagem",
             "in": "path",
             "required": true,
             "schema": {
@@ -221,14 +233,14 @@
         }
       }
     },
-    "/EnvioMensagem/cancelarEnvio/{id}": {
+    "/EnvioMensagem/cancelarEnvio/{idEnvioMensagem}": {
       "delete": {
         "tags": [
           "EnvioMensagem"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idEnvioMensagem",
             "in": "path",
             "required": true,
             "schema": {
@@ -275,14 +287,14 @@
         }
       }
     },
-    "/Instrutor/{id}": {
+    "/Instrutor/{idInstrutor}": {
       "get": {
         "tags": [
           "Instrutor"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idInstrutor",
             "in": "path",
             "required": true,
             "schema": {
@@ -298,14 +310,14 @@
         }
       }
     },
-    "/Instrutor/atualizar/{id}": {
+    "/Instrutor/atualizar/{idInstrutor}": {
       "put": {
         "tags": [
           "Instrutor"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idInstrutor",
             "in": "path",
             "required": true,
             "schema": {
@@ -340,14 +352,14 @@
         }
       }
     },
-    "/Instrutor/deletar/{id}": {
+    "/Instrutor/deletar/{idInstrutor}": {
       "delete": {
         "tags": [
           "Instrutor"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idInstrutor",
             "in": "path",
             "required": true,
             "schema": {
@@ -394,14 +406,14 @@
         }
       }
     },
-    "/Matricula/{id}": {
+    "/Matricula/{idMatricula}": {
       "get": {
         "tags": [
           "Matricula"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idMatricula",
             "in": "path",
             "required": true,
             "schema": {
@@ -417,14 +429,56 @@
         }
       }
     },
-    "/Matricula/deletar/{id}": {
+    "/Matricula/atualizar/{idMatricula}": {
+      "put": {
+        "tags": [
+          "Matricula"
+        ],
+        "parameters": [
+          {
+            "name": "idMatricula",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Matricula"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Matricula/deletar/{idMatricula}": {
       "delete": {
         "tags": [
           "Matricula"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idMatricula",
             "in": "path",
             "required": true,
             "schema": {
@@ -471,14 +525,14 @@
         }
       }
     },
-    "/MensagemMotivacional/{id}": {
+    "/MensagemMotivacional/{idMensagemMotivacional}": {
       "get": {
         "tags": [
           "MensagemMotivacional"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idMensagemMotivacional",
             "in": "path",
             "required": true,
             "schema": {
@@ -494,14 +548,14 @@
         }
       }
     },
-    "/MensagemMotivacional/deletar/{id}": {
+    "/MensagemMotivacional/deletar/{idMensagemMotivacional}": {
       "delete": {
         "tags": [
           "MensagemMotivacional"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idMensagemMotivacional",
             "in": "path",
             "required": true,
             "schema": {
@@ -548,14 +602,14 @@
         }
       }
     },
-    "/Modalidade/{id}": {
+    "/Modalidade/{idModalidade}": {
       "get": {
         "tags": [
           "Modalidade"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idModalidade",
             "in": "path",
             "required": true,
             "schema": {
@@ -571,14 +625,14 @@
         }
       }
     },
-    "/Modalidade/atualizar/{id}": {
+    "/Modalidade/atualizar/{idModalidade}": {
       "put": {
         "tags": [
           "Modalidade"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idModalidade",
             "in": "path",
             "required": true,
             "schema": {
@@ -613,14 +667,14 @@
         }
       }
     },
-    "/Modalidade/deletar/{id}": {
+    "/Modalidade/deletar/{idModalidade}": {
       "delete": {
         "tags": [
           "Modalidade"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idModalidade",
             "in": "path",
             "required": true,
             "schema": {
@@ -667,26 +721,61 @@
         }
       }
     },
-    "/Pagamento/atualizar/{id}": {
+    "/Pagamento/atualizar/{idPagamento}": {
       "put": {
         "tags": [
           "Pagamento"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPagamento",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
             }
-          },
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPagamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pagamento/deletar/{idPagamento}": {
+      "delete": {
+        "tags": [
+          "Pagamento"
+        ],
+        "parameters": [
           {
-            "name": "status",
-            "in": "query",
+            "name": "idPagamento",
+            "in": "path",
+            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/StatusPagamento"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -697,14 +786,26 @@
         }
       }
     },
-    "/Pagamento/deletar/{id}": {
-      "delete": {
+    "/Pagamento/listarPagamentos": {
+      "get": {
+        "tags": [
+          "Pagamento"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pagamento/obter/{idPagamento}": {
+      "get": {
         "tags": [
           "Pagamento"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPagamento",
             "in": "path",
             "required": true,
             "schema": {
@@ -751,14 +852,14 @@
         }
       }
     },
-    "/PerfilUsuario/{id}": {
+    "/PerfilUsuario/{idPerfilUsuario}": {
       "get": {
         "tags": [
           "PerfilUsuario"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPerfilUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -774,14 +875,14 @@
         }
       }
     },
-    "/PerfilUsuario/atualizar/{id}": {
+    "/PerfilUsuario/atualizar/{idPerfilUsuario}": {
       "put": {
         "tags": [
           "PerfilUsuario"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPerfilUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -816,14 +917,14 @@
         }
       }
     },
-    "/PerfilUsuario/deletar/{id}": {
+    "/PerfilUsuario/deletar/{idPerfilUsuario}": {
       "delete": {
         "tags": [
           "PerfilUsuario"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPerfilUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -848,17 +949,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             }
           }
@@ -870,14 +980,14 @@
         }
       }
     },
-    "/Permissao/{id}": {
+    "/Permissao/{idPermissao}": {
       "get": {
         "tags": [
           "Permissao"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPermissao",
             "in": "path",
             "required": true,
             "schema": {
@@ -893,37 +1003,35 @@
         }
       }
     },
-    "/Permissao/atualizar/{id}": {
+    "/Permissao/atualizar": {
       "put": {
         "tags": [
           "Permissao"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Permissao"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Permissao"
+                }
               }
             }
           }
@@ -935,22 +1043,73 @@
         }
       }
     },
-    "/Permissao/deletar/{id}": {
+    "/Permissao/deletar": {
       "delete": {
         "tags": [
           "Permissao"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Permissao/vincularPerfil": {
+      "post": {
+        "tags": [
+          "Permissao"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VinculoPermissaoPerfilDTO"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -989,14 +1148,14 @@
         }
       }
     },
-    "/Presenca/{id}": {
+    "/Presenca/{idPresenca}": {
       "get": {
         "tags": [
           "Presenca"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPresenca",
             "in": "path",
             "required": true,
             "schema": {
@@ -1012,14 +1171,14 @@
         }
       }
     },
-    "/Presenca/deletar/{id}": {
+    "/Presenca/deletar/{idPresenca}": {
       "delete": {
         "tags": [
           "Presenca"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPresenca",
             "in": "path",
             "required": true,
             "schema": {
@@ -1066,14 +1225,14 @@
         }
       }
     },
-    "/Progresso/{id}": {
+    "/Progresso/{idProgresso}": {
       "get": {
         "tags": [
           "Progresso"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idProgresso",
             "in": "path",
             "required": true,
             "schema": {
@@ -1089,10 +1248,106 @@
         }
       }
     },
-    "/Progresso/deletar/{id}": {
+    "/Progresso/deletar/{idProgresso}": {
       "delete": {
         "tags": [
           "Progresso"
+        ],
+        "parameters": [
+          {
+            "name": "idProgresso",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Turma/inserir": {
+      "post": {
+        "tags": [
+          "Turma"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Turma/atualizar/{id}": {
+      "put": {
+        "tags": [
+          "Turma"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Turma"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Turma/deletar/{id}": {
+      "delete": {
+        "tags": [
+          "Turma"
         ],
         "parameters": [
           {
@@ -1112,7 +1367,30 @@
         }
       }
     },
-    "/Usuarios": {
+    "/Turma/obter/{id}": {
+      "get": {
+        "tags": [
+          "Turma"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Usuarios/inserir": {
       "post": {
         "tags": [
           "Usuarios"
@@ -1143,14 +1421,14 @@
         }
       }
     },
-    "/Usuarios/{id}": {
+    "/Usuarios/{idUsuario}": {
       "get": {
         "tags": [
           "Usuarios"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -1164,14 +1442,16 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Usuarios/atualizar/{idUsuario}": {
       "put": {
         "tags": [
           "Usuarios"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -1204,14 +1484,16 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Usuarios/deletar/{idUsuario}": {
       "delete": {
         "tags": [
           "Usuarios"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idUsuario",
             "in": "path",
             "required": true,
             "schema": {
@@ -1226,16 +1508,54 @@
           }
         }
       }
+    },
+    "/Usuarios/ativarDesativar/{idUsuario}": {
+      "patch": {
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ativo",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "Aluno": {
+        "required": [
+          "matricula"
+        ],
         "type": "object",
         "properties": {
           "idAluno": {
             "type": "integer",
             "format": "int32"
+          },
+          "matricula": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           },
           "idUsuario": {
             "type": "integer",
@@ -1243,22 +1563,6 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
-          },
-          "dataNascimento": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "sexo": {
-            "$ref": "#/components/schemas/SexoEnum"
-          },
-          "telefone": {
-            "maxLength": 15,
-            "type": "string",
-            "nullable": true
-          },
-          "endereco": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1266,7 +1570,7 @@
       "EnvioMensagem": {
         "type": "object",
         "properties": {
-          "id": {
+          "idEnvioMensagem": {
             "type": "integer",
             "format": "int32"
           },
@@ -1274,8 +1578,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "aluno": {
-            "$ref": "#/components/schemas/Aluno"
+          "usuarioAluno": {
+            "$ref": "#/components/schemas/Usuario"
           },
           "idMensagem": {
             "type": "integer",
@@ -1284,22 +1588,30 @@
           "mensagem": {
             "$ref": "#/components/schemas/MensagemMotivacional"
           },
-          "dataEnvio": {
+          "dataAgendamento": {
             "type": "string",
             "format": "date-time"
           },
-          "cancelado": {
+          "agendado": {
             "type": "boolean"
           }
         },
         "additionalProperties": false
       },
       "Instrutor": {
+        "required": [
+          "codigoInstrutor"
+        ],
         "type": "object",
         "properties": {
-          "id": {
+          "idInstrutor": {
             "type": "integer",
             "format": "int32"
+          },
+          "codigoInstrutor": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           },
           "idUsuario": {
             "type": "integer",
@@ -1307,16 +1619,6 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
-          },
-          "telefone": {
-            "maxLength": 15,
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "maxLength": 100,
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1328,7 +1630,7 @@
             "type": "string",
             "nullable": true
           },
-          "senha": {
+          "password": {
             "type": "string",
             "nullable": true
           }
@@ -1338,7 +1640,7 @@
       "Matricula": {
         "type": "object",
         "properties": {
-          "id": {
+          "idMatricula": {
             "type": "integer",
             "format": "int32"
           },
@@ -1364,15 +1666,18 @@
         "additionalProperties": false
       },
       "MensagemMotivacional": {
+        "required": [
+          "texto"
+        ],
         "type": "object",
         "properties": {
-          "id": {
+          "idMensagemMotivacional": {
             "type": "integer",
             "format": "int32"
           },
           "texto": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "horarioEnvio": {
             "type": "string",
@@ -1394,7 +1699,7 @@
         ],
         "type": "object",
         "properties": {
-          "id": {
+          "idModalidade": {
             "type": "integer",
             "format": "int32"
           },
@@ -1409,7 +1714,7 @@
       "Pagamento": {
         "type": "object",
         "properties": {
-          "id": {
+          "idPagamento": {
             "type": "integer",
             "format": "int32"
           },
@@ -1528,7 +1833,7 @@
       "Presenca": {
         "type": "object",
         "properties": {
-          "id": {
+          "idPresenca": {
             "type": "integer",
             "format": "int32"
           },
@@ -1552,7 +1857,7 @@
       "Progresso": {
         "type": "object",
         "properties": {
-          "id": {
+          "idProgresso": {
             "type": "integer",
             "format": "int32"
           },
@@ -1596,25 +1901,23 @@
       },
       "SexoEnum": {
         "enum": [
-          0,
-          1
+          "Masculino",
+          "Feminino"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "StatusPagamento": {
         "enum": [
-          0,
-          1,
-          2
+          "Pendente",
+          "Pago",
+          "Atrasado"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "Turma": {
         "type": "object",
         "properties": {
-          "id": {
+          "idTurma": {
             "type": "integer",
             "format": "int32"
           },
@@ -1678,7 +1981,6 @@
       },
       "Usuario": {
         "required": [
-          "codigo",
           "email",
           "primeiroNome",
           "senha",
@@ -1705,18 +2007,29 @@
             "minLength": 1,
             "type": "string"
           },
-          "codigo": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string"
-          },
           "senha": {
-            "maxLength": 255,
             "minLength": 1,
             "type": "string"
           },
           "ativo": {
             "type": "boolean"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sexo": {
+            "$ref": "#/components/schemas/SexoEnum"
+          },
+          "telefone": {
+            "maxLength": 15,
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
           },
           "idPerfilUsuario": {
             "type": "integer",
@@ -1725,8 +2038,30 @@
           "perfilUsuario": {
             "$ref": "#/components/schemas/PerfilUsuario"
           },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
           "token": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VinculoPermissaoPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "idPerfilUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idPermissoes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
             "nullable": true
           }
         },

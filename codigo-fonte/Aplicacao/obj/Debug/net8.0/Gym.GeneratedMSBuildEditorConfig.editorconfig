@@ -17,11 +17,19 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Gym
 build_property.RootNamespace = Gym
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\thiag\OneDrive\Documentos\pandora-innovations\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement\codigo-fonte\Aplicacao\
+=======
+build_property.ProjectDir = C:\Users\apoli\Downloads\projetos\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\codigo-fonte\Aplicacao\
+>>>>>>> 3bb727dfd8544028ab64cf5506a11a7c7115dd6b
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\thiag\OneDrive\Documentos\pandora-innovations\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement\codigo-fonte\Aplicacao
+=======
+build_property.MSBuildProjectDirectory = C:\Users\apoli\Downloads\projetos\pmv-ads-2025-1-e5-proj-empext-t3-academymanagement-main\codigo-fonte\Aplicacao
+>>>>>>> 3bb727dfd8544028ab64cf5506a11a7c7115dd6b
 build_property._RazorSourceGeneratorDebug = 

@@ -6,17 +6,17 @@ namespace Gym.Models
     public class EnvioMensagem
     {
         [Key]
-        public int Id { get; set; }
+        public int IdEnvioMensagem { get; set; }
 
         public int IdAluno { get; set; }
         [ForeignKey("IdAluno")]
-        public Aluno Aluno { get; set; }
+        public Usuario? UsuarioAluno { get; set; }
 
         public int IdMensagem { get; set; }
         [ForeignKey("IdMensagem")]
-        public MensagemMotivacional Mensagem { get; set; }
+        public MensagemMotivacional? Mensagem { get; set; }
 
-        public DateTime DataEnvio { get; set; }
-        public bool Cancelado { get; set; } = false;
+        public DateTime DataAgendamento { get; set; }
+        public bool Agendado { get; set; } 
     }
 }

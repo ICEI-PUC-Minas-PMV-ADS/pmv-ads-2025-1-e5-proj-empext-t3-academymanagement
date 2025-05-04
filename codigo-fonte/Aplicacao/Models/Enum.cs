@@ -2,8 +2,8 @@
 {
     public enum SexoEnum
     {
-        M,
-        F
+        Masculino,
+        Feminino
     }
 
     public enum StatusPagamento
