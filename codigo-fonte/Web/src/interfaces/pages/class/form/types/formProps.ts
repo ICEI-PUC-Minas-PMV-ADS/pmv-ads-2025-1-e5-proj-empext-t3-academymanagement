@@ -1,5 +1,5 @@
-import { IClassEntity } from '../../../../../domain/entities/IClassEntity';
+import { IClasseEntity } from "../../../../../domain/entities/IClasseEntity";
 
 export interface IFormProps {
-	editClass?: IClassEntity;
+	editClass?: IClasseEntity;
 }

@@ -1,7 +1,7 @@
-import { IClassEntity } from '../../../../../domain/entities/IClassEntity';
+import { IClasseEntity } from "../../../../../domain/entities/IClasseEntity";
 
 export interface IFormPageProps {
 	params: {
-		classId?: IClassEntity['id'];
+		classId?: IClasseEntity['id'];
 	};
 }
