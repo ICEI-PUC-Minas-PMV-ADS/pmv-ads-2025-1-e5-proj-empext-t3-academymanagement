@@ -22,5 +22,4 @@ export const useAuthRepository = (type?: IRepositorysType): IAuthRepository => {
 	}, [repositoryType]);
 
 	return repository;
-
 };

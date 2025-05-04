@@ -3,8 +3,8 @@
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Tile } from '../../../../../components/tile';
-import { ITilesProps } from './types/ITilesProps';
 import { styles } from './styles';
+import { ITilesProps } from './types/ITilesProps';
 
 interface TilesComponentProps {
 	tiles: ITilesProps[];
@@ -24,7 +24,9 @@ export const Tiles = ({ tiles }: TilesComponentProps) => {
 					<Box
 						sx={{
 							...styles.tileContainer,
-							color: theme.palette.primary.contrastText,
+							height: '100px',
+							color: theme.palette.text.primary,
+							backgroundColor: theme.palette.background.neutral,
 						}}
 					>
 						<Box>

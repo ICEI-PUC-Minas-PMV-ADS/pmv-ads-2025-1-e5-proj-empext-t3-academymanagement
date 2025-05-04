@@ -4,7 +4,7 @@ import { IUserEntity } from '../entities/IUserEntity';
 export type IAuthDTO = Pick<IUserEntity, 'email' | 'password'>;
 
 export type IAuthPayload = {
-	user: IUserLogged;
+	user: IUserEntity;
 	token: string;
 	refresh: string;
 };

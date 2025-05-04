@@ -47,38 +47,36 @@ export const LoginPage = () => {
 
 	const onSubmit = handleSubmit(async ({ email, password }) => {
 		try {
-			const response = await authRepository.login({ email, password });
-	
-			if (response && response.success && response.data) {
-				const authData = response.data;
-	
+			const authData = await authRepository.login({
+				email,
+				password,
+			});
+
+			if (!authData || !authData.success)
+				enqueueSnackbar(
+					'Verifique seu usuário e senha e tente novamente!',
+					{ variant: 'error' },
+				);
+			else {
+				enqueueSnackbar('Usuário Autenticado com Sucesso!');
+
 				dispatch(
 					setAppContext({
-						token: authData.token,
-						user: authData.user,
-					})
+						token: authData.data.token,
+						user: authData.data.user,
+					}),
 				);
-	
-				enqueueSnackbar('Usuário autenticado com sucesso!', {
-					variant: 'success',
-				});
-	
-				router.push(Routes.user); 
-			} else {
-				enqueueSnackbar(
-					response?.message || 'Usuário ou senha incorretos!',
-					{ variant: 'error' }
-				);
+
+				router.push(Routes.user);
 			}
-		} catch (error: any) {
+		} catch (error) {
 			console.error(error);
-			enqueueSnackbar('Erro ao realizar login. Tente novamente.', {
+			enqueueSnackbar('Erro Interno do Servidor', {
 				variant: 'error',
+				autoHideDuration: 5000,
 			});
 		}
 	});
-	
-	
 
 	return (
 		<Box sx={{ width: '100%' }}>

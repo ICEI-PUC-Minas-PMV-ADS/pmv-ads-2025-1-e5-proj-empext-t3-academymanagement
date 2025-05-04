@@ -2,8 +2,8 @@
 
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { ITileProps } from './types/ITileProps';
 import { styles } from './styles';
+import { ITileProps } from './types/ITileProps';
 
 /**
  * A clickable tile component that can display content with optional icon

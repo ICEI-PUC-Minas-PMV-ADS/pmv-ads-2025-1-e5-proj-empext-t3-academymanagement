@@ -1,11 +1,11 @@
 'use client';
 
-import { Box, CircularProgress, Alert } from '@mui/material';
-import { Tiles } from './components/tiles';
+import { Alert, Box, CircularProgress } from '@mui/material';
 import { useEffect } from 'react';
-import { styles } from './styles';
-import { DASHBOARD_TILES } from './constants';
 import { useStatusCount } from '../../../hooks/useStatusCount';
+import { Tiles } from './components/tiles';
+import { DASHBOARD_TILES } from './constants';
+import { styles } from './styles';
 
 export const DashboardGrid = () => {
 	const {
