@@ -1,8 +1,11 @@
-import { Routes } from '../../../../../app/routes';
 import { IconsTypes } from '../../../icon/types';
 
-export interface INavBarRoutes {
+type INavBarProps = {
 	title: string;
 	icon: IconsTypes;
-	route: Routes;
+	route?: string;
+};
+
+export interface INavBarRoutes extends INavBarProps {
+	children?: INavBarProps[];
 }

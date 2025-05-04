@@ -3,10 +3,9 @@
 import { LoadingButton } from '@mui/lab';
 import Typography from '@mui/material/Typography';
 import { m } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Routes } from '../../../app/routes';
 import { MotionContainer, varBounce } from '../../components/animate';
-import { RouterLink } from '../../components/routerLink';
 import { useBoolean } from '../../hooks/useBoolean';
 import { CompactSection } from '../../layouts/simpleSection';
 import { ForbiddenIllustration } from './illustration';
@@ -38,7 +37,6 @@ export const Unauthorized = () => {
 				</m.div>
 
 				<LoadingButton
-					component={RouterLink}
 					size='large'
 					loading={isLoading.value}
 					onClick={() => {

@@ -7,17 +7,25 @@ import {
 	Card,
 	IconButton,
 	InputAdornment,
+	MenuItem,
 	Stack,
 	Typography,
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Routes } from '../../../../app/routes';
+import { IClasseEntity } from '../../../../domain/entities/IClasseEntity';
+import { useClassRepository } from '../../../../infrastructure/repositories/class';
 import { useUserRepository } from '../../../../infrastructure/repositories/user';
 import { randomPassword } from '../../../../infrastructure/utils/randomPassword';
-import { FormProvider, RHFTextField } from '../../../components/hookForm';
+import {
+	FormProvider,
+	RHFSelect,
+	RHFTextField,
+} from '../../../components/hookForm';
+import { RHFMultiSelect } from '../../../components/hookForm/rhf-select';
 import { Icon } from '../../../components/icon';
 import { useBoolean } from '../../../hooks/useBoolean';
 import { IStateForm } from './types/defaultStateForm';
@@ -30,11 +38,22 @@ export const UserForm = ({ editUser }: IFormProps) => {
 	const isEditMod = useBoolean(false);
 
 	const userRepository = useUserRepository();
+	const classRepository = useClassRepository();
 
 	const defaultValues = useMemo(
 		() => generateDefaultValues(editUser),
 		[editUser],
 	);
+
+	const [classOptions, setClassOptions] = useState<IClasseEntity[]>([
+		{
+			id: '',
+			name: '',
+			maximum: 0,
+			created_at: '',
+			updated_at: '',
+		},
+	]);
 
 	const formContext = useForm({
 		resolver: yupResolver(UserSchema(isEditMod.value)),
@@ -50,32 +69,64 @@ export const UserForm = ({ editUser }: IFormProps) => {
 		if (editUser?.id) isEditMod.onTrue();
 	}, [editUser]);
 
-	const onSubmit = async ({ id, ...data }: IStateForm) => {
+	const onSubmit = async ({ id, classes, ...data }: IStateForm) => {
 		try {
 			let response = {};
 
-			if (isEditMod.value)
+			if (isEditMod.value) {
 				response = await userRepository.update({
 					id,
+					//@ts-ignore
+					classes: classes?.map((id) => ({ id })),
 					...data,
 				});
-			else response = await userRepository.create(data);
+			} else {
+				response = await userRepository.create({
+					//@ts-ignore
+					classes: classes?.map((id) => ({ id })),
+					...data,
+				});
+			}
 
 			if (response) {
 				enqueueSnackbar('Usuário cadastrado com Sucesso!');
 				router.push(Routes.user);
-			} else
+			} else {
 				enqueueSnackbar(
 					isEditMod.value
 						? 'Erro ao editar o Usuário!'
 						: 'Erro ao cadastrar o Usuário!',
 					{ variant: 'error' },
 				);
+			}
 		} catch (error) {
 			console.log(error);
 			enqueueSnackbar('Erro interno da aplicação!', { variant: 'error' });
 		}
 	};
+
+	const getDependencies = async () => {
+		try {
+			const response = await classRepository.getAll();
+
+			if (response.success) {
+				setClassOptions(response.data || []);
+			} else {
+				enqueueSnackbar('Erro ao buscar as classes', {
+					variant: 'error',
+				});
+			}
+		} catch (error) {
+			console.error(error);
+			enqueueSnackbar('Erro interno da aplicação', {
+				variant: 'error',
+			});
+		}
+	};
+
+	useEffect(() => {
+		getDependencies();
+	}, []);
 
 	return (
 		<Box sx={{ width: '90%', minWidth: '350px', p: 5 }}>
@@ -113,6 +164,19 @@ export const UserForm = ({ editUser }: IFormProps) => {
 						>
 							<RHFTextField name='name' label='Nome completo' />
 							<RHFTextField name='email' label='Email' />
+							<RHFSelect name='type' label='Tipo de usuário'>
+								<MenuItem value='ADMIN'>Administrador</MenuItem>
+								<MenuItem value='STUDENT'>Aluno</MenuItem>
+							</RHFSelect>
+
+							<RHFMultiSelect
+								name='classes'
+								label='Classes de Aula'
+								options={classOptions.map((item) => ({
+									label: item.name,
+									value: item.id,
+								}))}
+							/>
 							<RHFTextField
 								name='password'
 								label={

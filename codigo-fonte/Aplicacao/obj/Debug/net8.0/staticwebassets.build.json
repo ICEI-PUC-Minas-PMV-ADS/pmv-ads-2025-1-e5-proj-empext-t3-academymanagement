@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "hYk873cgudvm9dfQeEWFh9b8UtKdC/DFsHhCGlAH720=",
+  "Hash": "MswP3ca1r009ufgSyQOOSdkzwKLfmF9LBY1Sl4mAiGo=",
   "Source": "Gym",
   "BasePath": "_content/Gym",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
