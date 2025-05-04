@@ -7,11 +7,91 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum UserType {
+    STUDENT
+    ADMIN
+}
+
 model User {
-    id         String   @id @default(uuid())
+    id                String            @id @default(uuid())
+    name              String
+    email             String            @unique
+    password          String
+    type              UserType
+    classes           UserToClasse[]
+    body_measurements BodyMeasurement[]
+    frequency         Frequency[]
+    subscription      Subscription?
+    created_at        DateTime          @default(now())
+    updated_at        DateTime          @updatedAt
+
+    @@map("user")
+}
+
+model Classe {
+    id         String         @id @default(uuid())
     name       String
-    email      String   @unique
-    password   String
+    maximum    Int
+    users      UserToClasse[]
+    created_at DateTime       @default(now())
+    updated_at DateTime       @updatedAt
+
+    @@map("classe")
+}
+
+model UserToClasse {
+    user      User   @relation(fields: [user_id], references: [id])
+    user_id   String
+    classe    Classe @relation(fields: [classe_id], references: [id])
+    classe_id String
+
+    @@id([user_id, classe_id])
+    @@map("user_to_classe")
+}
+
+model BodyMeasurement {
+    id         String   @id @default(uuid())
+    weight     Float
+    height     Float?
+    waist      Float
+    hip        Float
+    body_fat   Float
+    bmi        Float
+    user_id    String
+    user       User     @relation(fields: [user_id], references: [id])
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+
+    @@map("body_measurement")
+}
+
+model Frequency {
+    id         String   @id @default(uuid())
+    user_id    String
+    user       User     @relation(fields: [user_id], references: [id])
+    created_at DateTime @default(now())
+}
+
+model Subscription {
+    id              String            @id @default(uuid())
+    recorrency      String
+    cost            Float
+    status          String
+    user_id         String            @unique
+    user            User              @relation(fields: [user_id], references: [id])
+    payment_History Payment_History[]
+    created_at      DateTime          @default(now())
+    updated_at      DateTime          @updatedAt
+
+    @@map("subscription")
+}
+
+model Payment_History {
+    id              String       @id @default(uuid())
+    observation     String
+    cost            Float
+    subscription_id String
+    subscription    Subscription @relation(fields: [subscription_id], references: [id])
+    created_at      DateTime     @default(now())
+    updated_at      DateTime     @updatedAt
 }
