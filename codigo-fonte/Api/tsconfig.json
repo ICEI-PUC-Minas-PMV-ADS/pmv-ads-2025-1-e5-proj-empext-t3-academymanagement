@@ -1,12 +1,5 @@
 {
 	"compilerOptions": {
-		"include": [
-			"src/**/*.ts",
-			"prisma/**/*.ts" // adiciona seed.ts ao escopo de compilação
-		],
-		"exclude": [
-			"node_modules"
-		],
 		/* Visit https://aka.ms/tsconfig to read more about this file */
 		/* Projects */
 		// "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
