@@ -8,8 +8,8 @@ const nextConfig = {
 		styledComponents: true,
 	},
 	eslint: {
-		ignoreDuringBuilds: true
-	}
+		ignoreDuringBuilds: true,
+	},
 };
 
 export default nextConfig;

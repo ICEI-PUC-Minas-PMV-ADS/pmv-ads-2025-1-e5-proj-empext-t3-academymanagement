@@ -26,4 +26,6 @@ export const Routes = {
 	unauthorized: '/error/401',
 	internalServerError: '/error/500',
 	patientNotFound: '/error/patient/404',
+	frequencyChart: '/dashboard/frequencyChart',
+	bmiChart: '/dashboard/bmiChart',
 };

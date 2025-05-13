@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"build": "prisma generate && tsc",
+		"build": "tsc",
 		"start": "node dist/server.js",
 		"dev": "ts-node-dev --respawn src/server.ts",
 		"prisma:generate": "prisma generate",
-		"seed": "ts-node src/config/seed.ts",
+		"seed": "ts-node prisma/seed.ts",
 		"prisma:migrate": "prisma migrate deploy"
 	},
 	"keywords": [],

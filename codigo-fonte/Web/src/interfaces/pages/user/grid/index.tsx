@@ -31,7 +31,7 @@ export const UserGrid = () => {
 	const userRepository = useUserRepository();
 
 	const [tableData, setTableData] = useState<IUserEntity[]>([]);
-
+	
 	const { filters, onFilters } = useFilters<IUserFilters>({
 		initialFilters: {
 			search: '',
@@ -83,7 +83,9 @@ export const UserGrid = () => {
 
 		const isErrorReq = results.some((result) => !result);
 
-		if (isErrorReq) enqueueSnackbar('Erro ao deletar item!');
+		if (isErrorReq) enqueueSnackbar('Erro ao deletar item!', {
+			variant: 'error'
+		});
 		else enqueueSnackbar('Items Deletados com Sucesso!');
 	};
 

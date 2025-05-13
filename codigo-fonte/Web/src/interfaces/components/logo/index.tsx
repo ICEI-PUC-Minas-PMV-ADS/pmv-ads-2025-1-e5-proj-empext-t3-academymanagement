@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ILogoProps } from './types/ILogoProps';
 
 import logoThemeDark from '../../../../public/images/logo/dark.svg';
-import logoThemeLight from '../../../../public/images/logo/light.svg';
+import logoThemeLight from '../../../../public/images/logo/light.png';
 import { useAppSelector } from '../../../infrastructure/contexts';
 
 export const Logo = ({ height, width }: ILogoProps) => {

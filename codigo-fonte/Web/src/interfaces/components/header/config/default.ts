@@ -43,4 +43,20 @@ export const navBarDefault: INavBarRoutes[] = [
 			},
 		],
 	},
+	{
+		title: 'Relatórios',
+		icon: 'print',
+		children: [
+			{
+				title: 'Frequencias',
+				icon: 'calendar-check',
+				route: Routes.frequencyChart,
+			},
+			{
+				title: 'Medidas dos Alunos',
+				icon: 'ruler',
+				route: Routes.bmiChart,
+			},
+		],
+	},
 ];

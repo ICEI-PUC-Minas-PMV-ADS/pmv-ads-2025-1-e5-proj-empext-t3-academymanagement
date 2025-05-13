@@ -1,13 +1,17 @@
 'use client';
 
-import { Alert, Box, CircularProgress } from '@mui/material';
+import { Alert, Box, Card, CircularProgress } from '@mui/material';
 import { useEffect } from 'react';
+import { useStatusRepository } from '../../../../infrastructure/repositories/status';
+import AppAreaInstalled from '../../../components/graph';
+import { useFinancialChart } from '../../../hooks/useChart/useFinanceChart';
 import { useStatusCount } from '../../../hooks/useStatusCount';
 import { Tiles } from './components/tiles';
 import { DASHBOARD_TILES } from './constants';
 import { styles } from './styles';
 
 export const DashboardGrid = () => {
+	const statusRepository = useStatusRepository();
 	const {
 		data: countTile,
 		isLoading,
@@ -15,13 +19,24 @@ export const DashboardGrid = () => {
 		fetchStatusCount,
 	} = useStatusCount();
 
+	const {
+		isLoading: isLoadingFinancial,
+		fetchData: fetchDataFinancial,
+		chartData: chartDataFinancial,
+	} = useFinancialChart('Financas', statusRepository.financialManagement);
+
 	useEffect(() => {
 		fetchStatusCount();
 	}, [fetchStatusCount]);
 
-	if (isLoading) {
+	useEffect(() => {
+		fetchDataFinancial();
+	}, []);
+
+	useEffect(() => console.log(chartDataFinancial), [chartDataFinancial]);
+	if (isLoading.value) {
 		return (
-			<Box sx={styles.container} display='flex' justifyContent='center'>
+			<Box display='flex' justifyContent='center'>
 				<CircularProgress />
 			</Box>
 		);
@@ -29,14 +44,14 @@ export const DashboardGrid = () => {
 
 	if (error) {
 		return (
-			<Box sx={styles.container}>
+			<Box>
 				<Alert severity='error'>{error.message}</Alert>
 			</Box>
 		);
 	}
 
 	return (
-		<Box sx={styles.container}>
+		<>
 			<Box sx={styles.tilesContainer}>
 				<Tiles
 					tiles={[
@@ -59,6 +74,17 @@ export const DashboardGrid = () => {
 					]}
 				/>
 			</Box>
-		</Box>
+			<Card sx={{ width: '80%', overflow: 'auto' }}>
+				<Box>
+					<AppAreaInstalled
+						title='Finanças'
+						subheader='Gráfico indicativo de finanças'
+						currentDateTxt='Diário'
+						chart={chartDataFinancial}
+						loading={isLoadingFinancial.value}
+					/>
+				</Box>
+			</Card>
+		</>
 	);
 };

@@ -27,7 +27,7 @@ export const httpSubscriptionRepository: ISubscriptionRepository = {
 	): Promise<IResponse<ISubscriptionEntity[]>> => {
 		try {
 			const url = userId
-				? `/subscriptions?userId=${userId}`
+				? `/subscriptions/${userId}`
 				: '/subscriptions';
 			const response =
 				await apiInstance.get<IResponse<ISubscriptionEntity[]>>(url);

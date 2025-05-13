@@ -1,14 +1,12 @@
 import { SxProps } from '@mui/material';
 
 export const styles = {
-	container: {
-		width: '70vw',
-	},
 	tilesContainer: {
 		width: '100%',
 		display: 'flex',
 		flexWrap: 'wrap',
-		justifyContent: 'space-between',
+		justifyContent: 'space-around',
 		alignItems: 'center',
+		mb: 10,
 	},
 } satisfies Record<string, SxProps>;

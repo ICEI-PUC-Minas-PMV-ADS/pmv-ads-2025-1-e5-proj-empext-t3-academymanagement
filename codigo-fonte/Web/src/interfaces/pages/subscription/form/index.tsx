@@ -65,18 +65,24 @@ export const SubscriptionForm = ({ editSubscriptions }: IFormProps) => {
 	const onSubmit = async ({ id, ...data }: IStateForm) => {
 		try {
 			let response = {};
-
+			
 			if (isEditMod.value)
 				response = await subscriptionRepository.update({
 					id,
 					...data,
 				});
-			else
-				response = await subscriptionRepository.create({
+			else {
+				const hasUserRegister = await subscriptionRepository.getByUserId(data.user_id ?? "")
+				
+				if (hasUserRegister.data) {
+					enqueueSnackbar('O usuário já possui uma assinatura cadastrada', { variant: 'error' });
+					return
+				} else response = await subscriptionRepository.create({
 					...data,
 					status: 'Ativo',
 				});
-
+			}
+				
 			if (response) {
 				enqueueSnackbar(
 					isEditMod.value

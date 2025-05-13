@@ -23,9 +23,7 @@ export const NavBarList = ({ onCloseNavBar }: INavBarListProps) => {
 	const handleNavigate = useCallback(
 		(route: string) => {
 			setActiveRoute(route);
-			if (onCloseNavBar) {
-				onCloseNavBar();
-			}
+			onCloseNavBar?.();
 			router.push(route);
 		},
 		[onCloseNavBar, router],
@@ -76,9 +74,9 @@ export const NavBarList = ({ onCloseNavBar }: INavBarListProps) => {
 								gap: 1,
 							}}
 						>
-							{item.children.map((child: any, index) => (
+							{item.children.map((child: any) => (
 								<NavBarListItem
-									key={index}
+									key={child.title}
 									activeRoute={activeRoute}
 									item={child}
 									handleNavigate={handleNavigate}

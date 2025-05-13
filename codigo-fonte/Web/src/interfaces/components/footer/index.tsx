@@ -20,7 +20,7 @@ const Footer = () => {
 				fontSize={9.5}
 				sx={{ color: theme.palette.text.lighter }}
 			>
-				©Copyright 2025-2025 Lotus - Todos os Direitos Reservados
+				©Copyright 2025-2025 Ninja Team - Todos os Direitos Reservados
 			</Typography>
 		</Box>
 	);

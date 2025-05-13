@@ -59,6 +59,25 @@ export const httpPaymentHistoryRepository: IPaymentHistoryRepository = {
 			};
 		}
 	},
+
+	update: async (
+		data: IPaymentHistoryEntity,
+	): Promise<IResponse<IPaymentHistoryEntity>> => {
+		try {
+			const response = await apiInstance.put<
+				IResponse<IPaymentHistoryEntity>
+			>(`/payment-histories/${data.id}`, data);
+			return response.data;
+		} catch (error: any) {
+			return {
+				success: false,
+				message:
+					error.response?.data?.message ||
+					'Error updating payment history',
+			};
+		}
+	},
+
 	delete: async (paymentHistoryId: string): Promise<IResponse<any>> => {
 		try {
 			const response = await apiInstance.delete<IResponse<any>>(

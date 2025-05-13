@@ -11,8 +11,9 @@ export const styles = {
 		'transition': 'all 0.4s ease',
 		'borderRadius': '5%',
 		'cursor': 'pointer',
+		'background': theme.palette.background.neutral,
 		'&:hover': {
-			'backgroundColor': theme.palette.grey[800],
+			'backgroundColor': theme.palette.grey[700],
 			'& *': {
 				color: theme.palette.grey[100],
 			},

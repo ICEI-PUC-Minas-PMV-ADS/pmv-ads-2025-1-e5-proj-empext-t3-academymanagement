@@ -74,6 +74,8 @@ export const TableRow = ({
 								MONTHLY: 'MENSAL',
 								QUARTERLY: 'TRIMESTRAL',
 								YEARLY: 'ANUAL',
+								Mensal: 'MENSAL',
+								Anual: 'ANUAL'
 							}[
 								//@ts-ignore
 								row.recorrency
@@ -87,6 +89,8 @@ export const TableRow = ({
 					{
 						ACTIVE: 'Ativo',
 						INACTIVE: 'Inativo',
+						Ativo: 'Ativo',
+						Inativo: 'Inativo',
 					}[
 						//@ts-ignore
 						row.status

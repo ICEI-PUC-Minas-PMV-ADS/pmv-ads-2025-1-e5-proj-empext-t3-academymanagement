@@ -1,6 +1,6 @@
 {
-	"name": "Lotus",
-	"short_name": "Lotus",
+	"name": "Ninja Team",
+	"short_name": "Ninja Team",
 	"description": "Solução inteligente para gestão de hospedagens, reservas e programas de fidelidade.",
 	"start_url": "/",
 	"display": "standalone",

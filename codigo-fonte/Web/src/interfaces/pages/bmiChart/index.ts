@@ -1,0 +1,1 @@
+export { BmiChart } from './chart';

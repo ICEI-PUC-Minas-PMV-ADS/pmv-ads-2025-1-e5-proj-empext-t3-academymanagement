@@ -5,8 +5,6 @@ import { LoadingButton } from '@mui/lab';
 import {
 	Box,
 	Card,
-	IconButton,
-	InputAdornment,
 	Stack,
 	Typography,
 } from '@mui/material';
@@ -16,9 +14,7 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { Routes } from '../../../../app/routes';
 import { useClassRepository } from '../../../../infrastructure/repositories/class';
-import { randomPassword } from '../../../../infrastructure/utils/randomPassword';
 import { FormProvider, RHFTextField } from '../../../components/hookForm';
-import { Icon } from '../../../components/icon';
 import { useBoolean } from '../../../hooks/useBoolean';
 import { IStateForm } from './types/defaultStateForm';
 import { IFormProps } from './types/formProps';
@@ -41,11 +37,6 @@ export const ClassForm = ({ editClass }: IFormProps) => {
 		defaultValues,
 	});
 
-	const generateRandomPassword = () => {
-		const password = randomPassword();
-		formContext.setValue('password', password);
-	};
-
 	useEffect(() => {
 		if (editClass?.id) isEditMod.onTrue();
 	}, [editClass]);
@@ -62,13 +53,13 @@ export const ClassForm = ({ editClass }: IFormProps) => {
 			else response = await classRepository.create(data);
 
 			if (response) {
-				enqueueSnackbar('Usuário cadastrado com Sucesso!');
+				enqueueSnackbar('Classe cadastrada com sucesso!');
 				router.push(Routes.class);
 			} else
 				enqueueSnackbar(
 					isEditMod.value
-						? 'Erro ao editar o Usuário!'
-						: 'Erro ao cadastrar o Usuário!',
+						? 'Erro ao editar a classe!'
+						: 'Erro ao cadastrar a classe!',
 					{ variant: 'error' },
 				);
 		} catch (error) {
@@ -89,8 +80,8 @@ export const ClassForm = ({ editClass }: IFormProps) => {
 							sx={{ fontSize: '1.4rem', fontWeight: 'bold' }}
 						>
 							{isEditMod.value
-								? 'Edição de Usuários'
-								: 'Cadastro de Usuários'}
+								? 'Edição de Classes'
+								: 'Cadastro de Classes'}
 						</Typography>
 					</Box>
 					<Box
@@ -111,32 +102,8 @@ export const ClassForm = ({ editClass }: IFormProps) => {
 								sm: 'repeat(2, 1fr)',
 							}}
 						>
-							<RHFTextField name='name' label='Nome completo' />
-							<RHFTextField name='email' label='Email' />
-							<RHFTextField
-								name='password'
-								label={
-									isEditMod.value ? 'Editar Senha' : 'Senha'
-								}
-								InputProps={{
-									endAdornment: (
-										<InputAdornment position='end'>
-											<IconButton
-												onClick={generateRandomPassword}
-												edge='end'
-											>
-												<Icon
-													icon='sync'
-													type='regular'
-													color='inherit'
-													size='1.25x'
-													cursor='pointer'
-												/>
-											</IconButton>
-										</InputAdornment>
-									),
-								}}
-							/>
+							<RHFTextField name='name' label='Nome da Classe' />
+							<RHFTextField name='maximum' label='Máximo de Estudantes' type='number' />
 						</Stack>
 						<Stack
 							sx={{
@@ -153,7 +120,7 @@ export const ClassForm = ({ editClass }: IFormProps) => {
 							>
 								{isEditMod.value
 									? 'Salvar Alterações'
-									: 'Cadastrar Usuário'}
+									: 'Cadastrar Classe'}
 							</LoadingButton>
 						</Stack>
 					</Box>

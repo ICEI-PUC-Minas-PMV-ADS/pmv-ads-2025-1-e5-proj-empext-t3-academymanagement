@@ -111,7 +111,7 @@ export const TableRow = ({
 								onClick={subscriptionPopover.onOpen}
 							>
 								{
-									{ ACTIVE: 'Ativo', INACTIVE: 'Inativo' }[
+									{ ACTIVE: 'Ativo', INACTIVE: 'Inativo', Ativo: 'Ativo', Inativo: 'Inativo' }[
 										//@ts-ignore
 										row.subscription.status
 									]
@@ -134,6 +134,8 @@ export const TableRow = ({
 										{
 											ACTIVE: 'Ativo',
 											INACTIVE: 'Inativo',
+											Ativo: 'Ativo',
+											Inativo: 'Inativo'
 										}[
 											//@ts-ignore
 											row.subscription.status

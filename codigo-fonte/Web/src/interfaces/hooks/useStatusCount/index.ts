@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { IStatusCountEntity } from '../../../domain/entities/IStatusEntity';
 import { useStatusRepository } from '../../../infrastructure/repositories/status';
+import { useBoolean } from '../useBoolean';
 
 const initialState: IStatusCountEntity = {
 	classe: 0,
@@ -11,13 +12,13 @@ const initialState: IStatusCountEntity = {
 
 export const useStatusCount = () => {
 	const statusRepository = useStatusRepository();
+	const isLoading = useBoolean(false);
 	const [data, setData] = useState<IStatusCountEntity>(initialState);
-	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<Error | null>(null);
 
 	const fetchStatusCount = useCallback(async () => {
 		try {
-			setIsLoading(true);
+			isLoading.onTrue();
 			setError(null);
 			const response = await statusRepository.count();
 
@@ -31,7 +32,7 @@ export const useStatusCount = () => {
 					: new Error('Failed to fetch status count'),
 			);
 		} finally {
-			setIsLoading(false);
+			isLoading.onFalse();
 		}
 	}, [statusRepository]);
 
