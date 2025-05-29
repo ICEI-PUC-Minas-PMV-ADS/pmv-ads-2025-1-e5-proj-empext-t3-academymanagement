@@ -10,4 +10,4 @@ namespace Gym
 
         public string? Summary { get; set; }
     }
-
+}    
