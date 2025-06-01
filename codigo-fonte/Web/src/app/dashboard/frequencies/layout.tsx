@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
-import { metadataFrequencies } from '../../../interfaces/pages/frequencies/metadata';
+import type { Metadata } from 'next'
+import { metadataFrequencies } from '../../../interfaces/pages/frequencies/metadata'
 
-export const metadata: Metadata = metadataFrequencies;
+export const metadata: Metadata = metadataFrequencies
 
 export default function FrequenciesLayout({
 	children,
