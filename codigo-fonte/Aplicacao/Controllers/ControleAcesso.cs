@@ -115,4 +115,31 @@ namespace Gym.Controllers
         }
         #endregion
 
-      
+        #region token
+        private string GerarToken(Usuario usuario)
+        {
+            var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:Secret"]);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.Email, usuario.Email),
+                    new Claim("DataLogin", DateTime.UtcNow.ToString()),
+                    new Claim("PerfilUsuario", usuario.IdPerfilUsuario.ToString()) 
+                }),
+                Expires = DateTime.UtcNow.AddHours(Convert.ToDouble(_configuration["JwtSettings:ExpiracaoHoras"])),
+                Issuer = _configuration["JwtSettings:Issuer"],
+                Audience = _configuration["JwtSettings:Audience"],
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+    }
+    #endregion
+}
+
