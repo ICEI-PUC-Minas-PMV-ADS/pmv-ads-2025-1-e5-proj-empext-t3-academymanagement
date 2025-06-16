@@ -2,11 +2,11 @@
 
 Apresente os casos de testes utilizados na realização da verificação e validação da aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos bem como o tratamento de erros (robustez da aplicação).
 
-### Tipo de Teste
+### Tipo de Testes
 - **Sucesso**: Tem o objetivo de verificar se as funcionalidades funcionam corretamente.
 - **Insucesso**: Tem o objetivo de verificar se o sistema trata erros de maneira correta.
 
-#### Exemplo de Caso de Teste de Sucesso
+#### Exemplo de Caso de Testes de Sucessos
 <table>
   <tr>
     <th colspan="2" width="1000">CT-001<br>Login com credenciais válidas</th>
