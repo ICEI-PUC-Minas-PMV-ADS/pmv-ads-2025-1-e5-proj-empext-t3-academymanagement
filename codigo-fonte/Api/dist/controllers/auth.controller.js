@@ -19,7 +19,7 @@ exports.authController = {
                 const { user, token } = yield auth_service_1.authService.authenticate(email, password);
                 return res.status(200).json({
                     success: true,
-                    message: 'Autenticação realizada com sucesso.',
+                    message: 'Autenticação realizada com sucesso',
                     data: { user, token },
                 });
             }
@@ -32,7 +32,7 @@ exports.authController = {
                 }
                 return res.status(500).json({
                     success: false,
-                    message: 'Erro interno do servidor.',
+                    message: 'Erro interno do servidor',
                 });
             }
         });
