@@ -9,16 +9,22 @@ using Microsoft.IdentityModel.Tokens;
 
 
 
+// Cria o builder para configurar a aplicação
 
 var builder = WebApplication.CreateBuilder(args);
+// Configura o contexto do banco de dados usando PostgreSQL
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("POSTGRES"),
         o => o.MigrationsHistoryTable("__EFMigrationsHistory", builder.Configuration["DatabaseSettings:Schema"])
     ));
+// Obtém as configurações JWT do arquivo appsettings.json
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+
+// Converte a chave secreta para bytes para uso na validação do token
+
 var secretKey = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
 
 builder.Services.AddAuthentication(options =>
